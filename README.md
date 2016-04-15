@@ -1,1 +1,1 @@
-# Smart-Community
+# smart_community
