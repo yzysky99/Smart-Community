@@ -40,12 +40,14 @@ public final class R {
     }
     public static final class id {
         public static final int bottom_ll_layout=0x7f080002;
+        public static final int city=0x7f080007;
         public static final int divide_line=0x7f080001;
         public static final int iv_community=0x7f080005;
         public static final int iv_home=0x7f080003;
         public static final int iv_me=0x7f080006;
         public static final int iv_server=0x7f080004;
         public static final int main_rl_layout=0x7f080000;
+        public static final int weather=0x7f080008;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;

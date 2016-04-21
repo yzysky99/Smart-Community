@@ -1,0 +1,9 @@
+
+#
+# igrore generated
+#
+.gen
+.bin
+.classpath
+.project
+.settings
