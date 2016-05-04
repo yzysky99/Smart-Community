@@ -31,7 +31,6 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     
-    
     <application
         android:name="com.stev.smart_community.CommunityApplication"
         android:allowBackup="true"
