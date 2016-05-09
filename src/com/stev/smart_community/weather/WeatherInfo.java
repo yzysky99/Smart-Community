@@ -38,7 +38,7 @@ public class WeatherInfo {
 	        weatherInfo = sbf.toString();
 	        status = 1;
 	        if(weatherInfo != null){
-	        	 Log.d(TAG, "weatherInfo = " + weatherInfo);
+//	        	 Log.d(TAG, "weatherInfo = " + weatherInfo);
 	        	 mWeatherInfo = weatherInfo;
 	 	        callBack.onSuccess(status, weatherInfo);
 	        }else{
@@ -47,7 +47,7 @@ public class WeatherInfo {
 	        }
 	       
 	    } catch (Exception e) {
-	    	Log.d(TAG, "e = " + e);
+	    	Log.e(TAG, "e = " + e);
 	        e.printStackTrace();
 	        status = -1;
 	        callBack.onError(status, weatherInfo, e.getMessage());

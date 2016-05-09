@@ -6,5 +6,9 @@
     <string name="server_page">服务</string>
     <string name="community_page">社区</string>
     <string name="me_page">我</string>
-
+	<string name="update_time">[%s更新]</string>
+	<string name="default_city">深圳</string>
+	<string name="default_weather_cond">多云</string>
+	<string name="default_temp_cond">10℃-20℃</string>
+	
 </resources>

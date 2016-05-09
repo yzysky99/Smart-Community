@@ -6,6 +6,7 @@ import com.baidu.mapapi.SDKInitializer;
 
 import android.app.Application;
 import android.app.Service;
+import android.content.Context;
 import android.os.Vibrator;
 
 /**
@@ -18,6 +19,7 @@ import android.os.Vibrator;
 public class CommunityApplication extends Application {
 	public LocationService locationService;
     public Vibrator mVibrator;
+    public Context mContext;
     @Override
     public void onCreate() {
         super.onCreate();
@@ -27,5 +29,6 @@ public class CommunityApplication extends Application {
         locationService = new LocationService(getApplicationContext());
         mVibrator =(Vibrator)getApplicationContext().getSystemService(Service.VIBRATOR_SERVICE);
         SDKInitializer.initialize(getApplicationContext());  
+        mContext = this;
     }
 }

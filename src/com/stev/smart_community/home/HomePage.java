@@ -1,11 +1,23 @@
 package com.stev.smart_community.home;
 
+import java.text.SimpleDateFormat;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import android.R.integer;
+import android.app.Activity;
+import android.content.SharedPreferences;
+import android.graphics.AvoidXfermode.Mode;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.baidu.location.BDLocation;
@@ -20,15 +32,20 @@ import com.stev.smart_community.R;
 public class HomePage extends Fragment {
 	protected static final String TAG = "HomePage";
 	private LocationService locationService;
-	TextView cityTextView;
-	TextView weather;
+	TextView mCityName;
+	TextView mUpdateTime;
+	TextView mDateInfo;
+	TextView mWeatherInfo;
+	TextView mTmpRange;
+	TextView mCommunity;
+	ImageView mWeatherIcon;
+	
 	String city = "shenzhen";
 	Boolean locationState = false;
-	WeatherInfo weatherInfo;
+	WeatherInfo weatherData;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
 		View view = LayoutInflater.from(getActivity()).inflate(R.layout.home_page, null);
 		locationState = false;
 		initView(view);
@@ -68,12 +85,46 @@ public class HomePage extends Fragment {
 	}
 
 	private void initView(View view) {
-		cityTextView = (TextView)view.findViewById(R.id.city);
-		weather = (TextView)view.findViewById(R.id.weather);
+		mCityName = (TextView)view.findViewById(R.id.city_name);
+		mUpdateTime = (TextView)view.findViewById(R.id.update_time);
+		mDateInfo = (TextView)view.findViewById(R.id.date_info);
+		mWeatherInfo = (TextView)view.findViewById(R.id.weather_info);
+		mTmpRange = (TextView)view.findViewById(R.id.tmp_range);
+		mCommunity = (TextView)view.findViewById(R.id.community);
+		mWeatherIcon = (ImageView)view.findViewById(R.id.weather_icon); 
 	}
 	
 	private void initData() {
-		weatherInfo = new WeatherInfo();
+		String city;
+		String updateTime;
+		String date;
+		String weatherInfo;
+		String temp;
+		String community;
+		int weatherIcon;
+		
+		weatherData = new WeatherInfo();
+		SharedPreferences spWeatherInfo = getActivity().getSharedPreferences("weatherInfo", Activity.MODE_PRIVATE);
+		
+		city = spWeatherInfo.getString("city", getString(R.string.default_city));
+		updateTime = spWeatherInfo.getString("updateTime", getResources().getString(R.string.update_time, "8:00"));
+		SimpleDateFormat sDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		String spDate = sDateFormat.format(new java.util.Date());
+		Log.d(TAG, "spDate =" + spDate);
+		date = spWeatherInfo.getString("date", spDate);
+		weatherInfo = spWeatherInfo.getString("weatherInfo", getString(R.string.default_weather_cond));
+		temp = spWeatherInfo.getString("temp", getString(R.string.default_temp_cond));
+		community = spWeatherInfo.getString("community", "");
+		int resID = getResources().getIdentifier("cond_101", "drawable", "com.stev.smart_community");
+		weatherIcon = spWeatherInfo.getInt("weatherIcon", resID);
+		
+		mCityName.setText(city);
+		mUpdateTime.setText(updateTime);
+		mDateInfo.setText(date);
+		mWeatherInfo.setText(weatherInfo);
+		mTmpRange.setText(temp);
+		mCommunity.setText(community);
+		mWeatherIcon.setImageResource(weatherIcon);
 	}
 	
 	@Override
@@ -168,60 +219,136 @@ public class HomePage extends Fragment {
 					sb.append("无法获取有效定位依据导致定位失败，一般是由于手机的原因，处于飞行模式下一般会造成这种结果，可以试着重启手机");
 				}
 				
-				if (locationState) {
-					city = location.getCity();
-					if(city != null && city.length() > 0){
-						city = city.substring(0, city.length() -1);
-						new Thread(new Runnable() {
-							
-							@Override
-							public void run() {
-								getWeatherData(city);
-							}
-						}).start();
+				city = location.getCity();
+//				Log.d(TAG, "city =" + city);
+				if(city != null && city.length() > 0){
+					city = city.substring(0, city.length() -1);
+				}else {
+					city = "深圳";
+				}
+				new Thread(new Runnable() {
+					
+					@Override
+					public void run() {
+						getWeatherData(city);
 					}
+				}).start();
+				
+				if(locationState){
 					locationState = false;
 					locationService.stop();
 				}
-//				logMsg(sb.toString());
 			}
 		}
 	};
 	
-	/**
-	 * 显示请求字符串
-	 * 
-	 * @param str
-	 */
-	public void logMsg(String str) {
+	
+	private void initWeatherData(String weatherInfo) {
+		String heWeatherVersion = "HeWeather data service 3.0";
+		String aqi = "aqi";
+		String basic = "basic";
+		String dailyForecast = "daily_forecast";
+		String hourlyForecast = "hourly_forecast";
+		String now = "now";
+		String suggestion = "suggestion";
+		
+		JSONObject aqiJson;
+		JSONObject basicJson;
+		JSONArray dailyForecastJsonArray;
+		JSONArray hourlyForecastJsonArray;
+		JSONObject nowJson;
+		JSONObject suggestionJson;
+		JSONArray weatherJsonArray;
+		JSONObject weahterJson;
 		try {
-			if (cityTextView != null)
-				cityTextView.setText(str);
-		} catch (Exception e) {
+			JSONObject weatherJsonObject = new JSONObject(weatherInfo);
+			weatherJsonArray = weatherJsonObject.getJSONArray(heWeatherVersion);
+			weahterJson = weatherJsonArray.getJSONObject(0);
+			aqiJson = weahterJson.getJSONObject(aqi);
+			basicJson = weahterJson.getJSONObject(basic);
+			
+			// basic解析
+			String updateTime;
+			JSONObject updateTimeJson;
+			String cityName = basicJson.getString("city");
+			updateTimeJson = basicJson.getJSONObject("update");
+			updateTime = updateTimeJson.getString("loc");
+			mCityName.setText(cityName);
+			String mTime = updateTime.substring(updateTime.length() - 5);
+			String updateName = getResources().getString(R.string.update_time, mTime);
+			mUpdateTime.setText(updateName);
+			
+			JSONObject astroJson;
+			JSONObject tmpJson;
+			String tmpMax, tmpMin;
+			dailyForecastJsonArray = weahterJson.getJSONArray(dailyForecast);
+			astroJson = dailyForecastJsonArray.getJSONObject(0);
+			tmpJson = astroJson.getJSONObject("tmp");
+			tmpMax = tmpJson.getString("max");
+			tmpMin = tmpJson.getString("min");
+			String date = astroJson.getString("date");
+//			Log.d(TAG, "tmpMax =" + tmpMax);
+//			Log.d(TAG, "tmpMin =" + tmpMin);
+//			Log.d(TAG, "date =" + date);
+			String tmp = tmpMax + "℃ -" + tmpMin + "℃";//°
+			mDateInfo.setText(date);
+			mTmpRange.setText(tmp);
+			
+			hourlyForecastJsonArray = weahterJson.getJSONArray(hourlyForecast);
+			
+			// now解析
+			nowJson = weahterJson.getJSONObject(now);
+			JSONObject condJson;
+			condJson = nowJson.getJSONObject("cond");
+			String code = condJson.getString("code");
+			String txt = condJson.getString("txt");
+			String tmpNow = nowJson.getString("tmp");
+//			Log.d(TAG, "code =" + code);
+//			Log.d(TAG, "txt =" + txt);
+//			Log.d(TAG, "tmpNow =" + tmpNow);
+			
+			mWeatherInfo.setText(txt);
+			int resID = getResources().getIdentifier("cond_" + code, "drawable", "com.stev.smart_community");
+			mWeatherIcon.setImageResource(resID);
+			suggestionJson = weahterJson.getJSONObject(suggestion);
+			
+//			Log.d(TAG, "aqiJson =" + aqiJson);
+//			Log.d(TAG, "basicJson =" + basicJson);
+//			Log.d(TAG, "dailyForecastJsonArray =" + dailyForecastJsonArray);
+//			Log.d(TAG, "hourlyForecastJsonArray =" + hourlyForecastJsonArray);
+//			Log.d(TAG, "nowJson =" + nowJson);
+//			Log.d(TAG, "suggestionJson =" + suggestionJson);
+			
+			SharedPreferences spWeatherInfo = getActivity().getSharedPreferences("weatherInfo", Activity.MODE_PRIVATE);
+			SharedPreferences.Editor editor = spWeatherInfo.edit();
+			editor.putString("city", cityName);
+			editor.putString("updateTime", updateName);
+			editor.putString("weatherInfo", txt);
+			editor.putString("temp", tmp);
+			editor.putInt("weatherIcon", resID);
+		} catch (JSONException e) {
 			e.printStackTrace();
 		}
 	}
 	
-
 	private void getWeatherData(String city) {
-		weatherInfo.getWeatherInfo(city, new GetWeatherCallBack() {
+		weatherData.getWeatherInfo(city, new GetWeatherCallBack() {
 			@Override
 			public void onSuccess(int status, final String weatherInfo) {
 				Log.i(TAG, "onSuccess");
 				getActivity().runOnUiThread(new Runnable() {
 					public void run() {
-						cityTextView.setText(weatherInfo);
+						initWeatherData(weatherInfo);
 					}
 				});
 			}
 			
 			@Override
 			public void onError(int status, String weatherInfo, final String error) {
-				Log.i(TAG, "onError, status: " + status);
-            	Log.i(TAG, "errMsg: " + (error));
+				Log.e(TAG, "onError, status: " + status);
             	getActivity().runOnUiThread(new Runnable() {
 					public void run() {
-						cityTextView.setText(error);
+		            	Log.e(TAG, "errMsg: " + (error));
 					}
 				});
 			}
