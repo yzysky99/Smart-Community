@@ -1,4 +1,4 @@
-package com.stev.smart_community.home;
+package com.stev.smart_community.customview;
 
 import com.stev.smart_community.R;
 

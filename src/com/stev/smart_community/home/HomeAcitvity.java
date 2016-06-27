@@ -1,6 +1,8 @@
 package com.stev.smart_community.home;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -10,8 +12,11 @@ import android.R.integer;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +25,7 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 
@@ -28,6 +34,7 @@ import com.baidu.location.BDLocationListener;
 import com.baidu.location.Poi;
 import com.baidu.location.service.LocationService;
 import com.stev.smart_community.CommunityApplication;
+import com.stev.smart_community.customview.CategoryAdapter;
 import com.stev.smart_community.weather.*;
 import com.stev.smart_community.R;
 
@@ -39,7 +46,7 @@ public class HomeAcitvity extends Fragment {
 	private TextView mDateInfo;
 	private TextView mWeatherInfo;
 	private TextView mTmpRange;
-	private TextView mCommunity;
+	private TextView mHomeTitle;
 	private ImageView mWeatherIcon;
 	
 	private String mCity = "shenzhen";
@@ -48,6 +55,10 @@ public class HomeAcitvity extends Fragment {
 	
 	private GridView mGridViewCategory;
 	private CategoryAdapter mCategoryAdapter;
+	
+	private ListView mShopInfoLV;
+	private ShopAdapter shopAdapter;
+	private List<ShopInfo> mShopInfoList = new ArrayList<ShopInfo>();
 	
 	private int[][] mCategoryPic = { 
 			{R.drawable.category_pic_1, R.string.category_1},
@@ -105,7 +116,7 @@ public class HomeAcitvity extends Fragment {
 		mDateInfo = (TextView)view.findViewById(R.id.date_info);
 		mWeatherInfo = (TextView)view.findViewById(R.id.weather_info);
 		mTmpRange = (TextView)view.findViewById(R.id.tmp_range);
-		mCommunity = (TextView)view.findViewById(R.id.community);
+		mHomeTitle = (TextView)view.findViewById(R.id.home_title);
 		mWeatherIcon = (ImageView)view.findViewById(R.id.weather_icon); 
 		mGridViewCategory = (GridView)view.findViewById(R.id.gv_category); 
 		mCategoryAdapter = new CategoryAdapter(getActivity(), mCategoryPic);
@@ -118,6 +129,20 @@ public class HomeAcitvity extends Fragment {
 				startActivity(intent);
 			}
 		});
+		
+		mShopInfoLV = (ListView)view.findViewById(R.id.lv_shop_info);
+		shopAdapter = new ShopAdapter(getActivity());
+		
+		ShopInfo shopInfo = new ShopInfo();
+		shopInfo.shopLogo = BitmapFactory.decodeResource(getResources(), R.drawable.kfc_logo);
+		shopInfo.shopName = getResources().getString(R.string.shop_name);
+//		shopInfo.shopRatingBar
+		shopInfo.shopPrice = getResources().getString(R.string.shop_price);
+		for(int i = 0; i< 10; i++) {
+			mShopInfoList.add(i, shopInfo);
+		}
+		shopAdapter.updateData(mShopInfoList);
+		mShopInfoLV.setAdapter(shopAdapter);
 	}
 	
 	
@@ -150,7 +175,9 @@ public class HomeAcitvity extends Fragment {
 		mDateInfo.setText(date);
 		mWeatherInfo.setText(weatherInfo);
 		mTmpRange.setText(temp);
-		mCommunity.setText(community);
+		if(!TextUtils.isEmpty(community)) {
+			mHomeTitle.setText(community);
+		}
 		mWeatherIcon.setImageResource(weatherIcon);
 	}
 	

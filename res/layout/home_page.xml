@@ -3,7 +3,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-
+    
+	<ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+         android:scrollbars="none" >
+        
+     <LinearLayout 
+          android:layout_width="match_parent"
+        	android:layout_height="match_parent"
+        	android:orientation="vertical" >
+        	
     <RelativeLayout
 	    android:layout_width="match_parent"
 	    android:layout_height="@dimen/status_bar_size"
@@ -18,11 +28,13 @@
 	        android:background="@drawable/setting" />
 	
 	    <TextView
-	        android:id="@+id/community"
+	        android:id="@+id/home_title"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:layout_centerInParent="true"
 	        android:textColor="@color/white"
+	        android:gravity="center_horizontal"
+	        android:text="@string/home_title"
 	        android:textSize="@dimen/text_size_24sp" />
 	
 	    <Button
@@ -35,101 +47,101 @@
 	        android:background="@drawable/refresh" />
 	</RelativeLayout>
    
-    
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/weather_info_size"
-        android:background="@color/weather_info_bk">
-
-        <TextView
-            android:id="@+id/city_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="@dimen/margin_size_10"
-            android:layout_marginTop="@dimen/margin_size_10"
-            android:textColor="@color/white"
-            android:textSize="@dimen/text_size_18sp" />
-        
-         <TextView
-            android:id="@+id/date_info"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/city_name"
-            android:layout_marginLeft="@dimen/margin_size_10"
-            android:layout_marginTop="@dimen/margin_size_16"
-            android:textColor="@color/white"
-            android:textSize="@dimen/text_size_18sp" />
-         
-          <TextView
-            android:id="@+id/update_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="@dimen/margin_size_10"
-            android:layout_marginTop="@dimen/margin_size_10"
-            android:textColor="@color/white"
-            android:textSize="@dimen/text_size_18sp" />
-
-        <RelativeLayout
-            android:id="@+id/weather_info_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toLeftOf="@id/update_time"
-            android:layout_marginTop="@dimen/margin_size_20">
-
-            <TextView
-                android:id="@+id/weather_info"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:layout_marginLeft="@dimen/margin_size_36"
-                android:textSize="@dimen/text_size_32sp" />
-            
-            <ImageView 
-	            android:id="@+id/weather_icon"
-	            android:layout_width="@dimen/weahter_icon_size"
-	            android:layout_height="@dimen/weahter_icon_size"
+	    <RelativeLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="@dimen/weather_info_size"
+	        android:background="@color/weather_info_bk">
+	
+	        <TextView
+	            android:id="@+id/city_name"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_alignParentLeft="true"
+	            android:layout_marginLeft="@dimen/margin_size_10"
 	            android:layout_marginTop="@dimen/margin_size_10"
-	            android:layout_toRightOf="@id/weather_info"/>
-
-           <TextView
-                android:id="@+id/tmp_range"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/weather_info"
-                android:textColor="@color/white"
-                android:textSize="@dimen/text_size_32sp" />
-        </RelativeLayout>
-    </RelativeLayout>
-    
-    <RelativeLayout
-	    android:id="@+id/category_layout"
-	    android:layout_width="match_parent"
-	    android:layout_height="140dp"
-	    android:background="@color/white"
-	    android:layout_marginTop="@dimen/margin_size_10">
-	   
-	   <GridView 
-	     android:id="@+id/gv_category"
-	     android:layout_width="match_parent"
-	     android:layout_height="match_parent"
-	     android:horizontalSpacing="6dp"
-	     android:numColumns="4"
-	     android:verticalSpacing="8dp"/>
-    </RelativeLayout>
-    
-  <RelativeLayout
-	    android:id="@+id/ddd"
-	    android:layout_width="match_parent"
-	    android:layout_height="140dp"
-	    android:background="@color/white"
-	    android:layout_marginTop="@dimen/margin_size_10">
-	   
-	   <ImageView 
-	     android:id="@+id/image_dd"
-	     android:layout_width="match_parent"
-	     android:layout_height="match_parent"/>
-    </RelativeLayout>
-    
+	            android:textColor="@color/white"
+	            android:textSize="@dimen/text_size_18sp" />
+	        
+	         <TextView
+	            android:id="@+id/date_info"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_below="@id/city_name"
+	            android:layout_marginLeft="@dimen/margin_size_10"
+	            android:layout_marginTop="@dimen/margin_size_16"
+	            android:textColor="@color/white"
+	            android:textSize="@dimen/text_size_18sp" />
+	         
+	          <TextView
+	            android:id="@+id/update_time"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_alignParentRight="true"
+	            android:layout_marginRight="@dimen/margin_size_10"
+	            android:layout_marginTop="@dimen/margin_size_10"
+	            android:textColor="@color/white"
+	            android:textSize="@dimen/text_size_18sp" />
+	
+	        <RelativeLayout
+	            android:id="@+id/weather_info_layout"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_toLeftOf="@id/update_time"
+	            android:layout_marginTop="@dimen/margin_size_20">
+	
+	            <TextView
+	                android:id="@+id/weather_info"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:textColor="@color/white"
+	                android:layout_marginLeft="@dimen/margin_size_36"
+	                android:textSize="@dimen/text_size_32sp" />
+	            
+	            <ImageView 
+		            android:id="@+id/weather_icon"
+		            android:layout_width="@dimen/weahter_icon_size"
+		            android:layout_height="@dimen/weahter_icon_size"
+		            android:layout_marginTop="@dimen/margin_size_10"
+		            android:layout_toRightOf="@id/weather_info"/>
+	
+	           <TextView
+	                android:id="@+id/tmp_range"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_below="@id/weather_info"
+	                android:textColor="@color/white"
+	                android:textSize="@dimen/text_size_32sp" />
+	        </RelativeLayout>
+	    </RelativeLayout>
+	     
+	    <RelativeLayout
+		    android:id="@+id/category_layout"
+		    android:layout_width="match_parent"
+		    android:layout_height="140dp"
+		    android:background="@color/white"
+		    android:layout_marginTop="@dimen/margin_size_10">
+		   
+		   <GridView 
+		     android:id="@+id/gv_category"
+		     android:layout_width="match_parent"
+		     android:layout_height="match_parent"
+		     android:horizontalSpacing="6dp"
+		     android:numColumns="4"
+		     android:verticalSpacing="8dp"/>
+	    </RelativeLayout>
+	    
+	    <LinearLayout 
+	        android:layout_width="match_parent"
+        	android:layout_height="match_parent"
+        	android:orientation="vertical"
+        	android:layout_marginTop="@dimen/margin_size_10" >
+		   
+		    <com.stev.smart_community.customview.DisplayListView 
+		        android:id="@+id/lv_shop_info"
+			    android:layout_width="match_parent"
+			    android:layout_height="wrap_content"
+			    android:background="@color/white"/>
+	        </LinearLayout>
+	     </LinearLayout>            
+	</ScrollView>
 </LinearLayout>

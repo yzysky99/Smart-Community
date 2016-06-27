@@ -21,4 +21,33 @@
 	<string name="category_6">智慧生活</string>
 	<string name="category_7">社区公告</string>
 	<string name="category_8">餐饮服务</string>
+	
+	<string name="shop_name">肯德基(科技园店)</string>
+	<string name="shop_price">￥20/人</string>	
+	
+	<string name="home_title">首页</string>
+	<string name="server_title">服务</string>	
+	<string name="community_title">社区</string>	
+	<string name="me_title">我</string>	
+	
+	<!-- 服务页 -->
+	<string name="server_category_1">家政服务</string>
+	<string name="server_category_2">家电维修</string>
+	<string name="server_category_3">保洁</string>
+	<string name="server_category_4">快递</string>
+	<string name="server_category_5">搬家</string>
+	
+	<!-- 我的社区 -->
+	<string name="community_category_1">活动</string>
+	<string name="community_category_2">团购</string>
+	<string name="community_category_3">二手市场</string>
+	<string name="community_category_4">兴趣</string>
+	<string name="community_category_5">美食</string>
+	
+	<!-- 我 -->
+	<string name="me_login_info">登录信息</string>
+	<string name="me_order">我的订单</string>
+	<string name="me_neighbor">我的邻居</string>
+	<string name="me_settings">设置</string>
+	<string name="me_server_phone">服务电话</string>
 </resources>
