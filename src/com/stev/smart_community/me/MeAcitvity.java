@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 
 import com.stev.smart_community.R;
 
-public class MePage extends Fragment {
+public class MeAcitvity extends Fragment {
 
 
 	@Override

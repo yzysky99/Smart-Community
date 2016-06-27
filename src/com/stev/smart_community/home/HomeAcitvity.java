@@ -8,8 +8,8 @@ import org.json.JSONObject;
 
 import android.R.integer;
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.AvoidXfermode.Mode;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -17,37 +17,52 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.AdapterView.OnItemClickListener;
 
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.Poi;
 import com.baidu.location.service.LocationService;
 import com.stev.smart_community.CommunityApplication;
-import com.stev.smart_community.Config;
 import com.stev.smart_community.weather.*;
 import com.stev.smart_community.R;
 
-public class HomePage extends Fragment {
+public class HomeAcitvity extends Fragment {
 	protected static final String TAG = "HomePage";
 	private LocationService locationService;
-	TextView mCityName;
-	TextView mUpdateTime;
-	TextView mDateInfo;
-	TextView mWeatherInfo;
-	TextView mTmpRange;
-	TextView mCommunity;
-	ImageView mWeatherIcon;
+	private TextView mCityName;
+	private TextView mUpdateTime;
+	private TextView mDateInfo;
+	private TextView mWeatherInfo;
+	private TextView mTmpRange;
+	private TextView mCommunity;
+	private ImageView mWeatherIcon;
 	
-	String city = "shenzhen";
-	Boolean locationState = false;
-	WeatherInfo weatherData;
+	private String mCity = "shenzhen";
+	private Boolean mLocationState = false;
+	private WeatherInfo mWeatherData;
+	
+	private GridView mGridViewCategory;
+	private CategoryAdapter mCategoryAdapter;
+	
+	private int[][] mCategoryPic = { 
+			{R.drawable.category_pic_1, R.string.category_1},
+			{R.drawable.category_pic_2, R.string.category_2},  
+			{R.drawable.category_pic_3, R.string.category_3},
+			{R.drawable.category_pic_4, R.string.category_4}, 
+			{R.drawable.category_pic_5, R.string.category_5}, 
+			{R.drawable.category_pic_6, R.string.category_6}, 
+			{R.drawable.category_pic_7, R.string.category_7}, 
+			{R.drawable.category_pic_8, R.string.category_8}};
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View view = LayoutInflater.from(getActivity()).inflate(R.layout.home_page, null);
-		locationState = false;
+		mLocationState = false;
 		initView(view);
 		initData();
 		return view;
@@ -92,7 +107,19 @@ public class HomePage extends Fragment {
 		mTmpRange = (TextView)view.findViewById(R.id.tmp_range);
 		mCommunity = (TextView)view.findViewById(R.id.community);
 		mWeatherIcon = (ImageView)view.findViewById(R.id.weather_icon); 
+		mGridViewCategory = (GridView)view.findViewById(R.id.gv_category); 
+		mCategoryAdapter = new CategoryAdapter(getActivity(), mCategoryPic);
+		mGridViewCategory.setAdapter(mCategoryAdapter);
+		
+		mGridViewCategory.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
+				Intent intent = new Intent(getActivity(), NoticeAcitvity.class);
+				startActivity(intent);
+			}
+		});
 	}
+	
 	
 	private void initData() {
 		String city;
@@ -103,7 +130,7 @@ public class HomePage extends Fragment {
 		String community;
 		int weatherIcon;
 		
-		weatherData = new WeatherInfo();
+		mWeatherData = new WeatherInfo();
 		SharedPreferences spWeatherInfo = getActivity().getSharedPreferences("weatherInfo", Activity.MODE_PRIVATE);
 		
 		city = spWeatherInfo.getString("city", getString(R.string.default_city));
@@ -193,49 +220,49 @@ public class HomePage extends Fragment {
 					sb.append(location.getAltitude());// 单位：米
 					sb.append("\ndescribe : ");
 					sb.append("gps定位成功");
-					locationState = true;
+					mLocationState = true;
 				} else if (location.getLocType() == BDLocation.TypeNetWorkLocation) {// 网络定位结果
 					// 运营商信息
 					sb.append("\noperationers : ");
 					sb.append(location.getOperators());
 					sb.append("\ndescribe : ");
 					sb.append("网络定位成功");
-					locationState = true;
+					mLocationState = true;
 				} else if (location.getLocType() == BDLocation.TypeOffLineLocation) {// 离线定位结果
 					sb.append("\ndescribe : ");
-					locationState = true;
+					mLocationState = true;
 					sb.append("离线定位成功，离线定位结果也是有效的");
 				} else if (location.getLocType() == BDLocation.TypeServerError) {
 					sb.append("\ndescribe : ");
-					locationState = false;
+					mLocationState = false;
 					sb.append("服务端网络定位失败，可以反馈IMEI号和大体定位时间到loc-bugs@baidu.com，会有人追查原因");
 				} else if (location.getLocType() == BDLocation.TypeNetWorkException) {
 					sb.append("\ndescribe : ");
-					locationState = false;
+					mLocationState = false;
 					sb.append("网络不同导致定位失败，请检查网络是否通畅");
 				} else if (location.getLocType() == BDLocation.TypeCriteriaException) {
 					sb.append("\ndescribe : ");
-					locationState = false;
+					mLocationState = false;
 					sb.append("无法获取有效定位依据导致定位失败，一般是由于手机的原因，处于飞行模式下一般会造成这种结果，可以试着重启手机");
 				}
 				
-				city = location.getCity();
-//				Log.d(TAG, "city =" + city);
-				if(city != null && city.length() > 0){
-					city = city.substring(0, city.length() -1);
+				mCity = location.getCity();
+//				Log.d(TAG, "mCity =" + mCity);
+				if(mCity != null && mCity.length() > 0){
+					mCity = mCity.substring(0, mCity.length() -1);
 				}else {
-					city = "深圳";
+					mCity = "深圳";
 				}
 				new Thread(new Runnable() {
 					
 					@Override
 					public void run() {
-						getWeatherData(city);
+						getWeatherData(mCity);
 					}
 				}).start();
 				
-				if(locationState){
-					locationState = false;
+				if(mLocationState){
+					mLocationState = false;
 					locationService.stop();
 				}
 			}
@@ -332,7 +359,7 @@ public class HomePage extends Fragment {
 	}
 	
 	private void getWeatherData(String city) {
-		weatherData.getWeatherInfo(city, new GetWeatherCallBack() {
+		mWeatherData.getWeatherInfo(city, new GetWeatherCallBack() {
 			@Override
 			public void onSuccess(int status, final String weatherInfo) {
 				Log.i(TAG, "onSuccess");

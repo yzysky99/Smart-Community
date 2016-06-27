@@ -102,4 +102,34 @@
                 android:textSize="@dimen/text_size_32sp" />
         </RelativeLayout>
     </RelativeLayout>
+    
+    <RelativeLayout
+	    android:id="@+id/category_layout"
+	    android:layout_width="match_parent"
+	    android:layout_height="140dp"
+	    android:background="@color/white"
+	    android:layout_marginTop="@dimen/margin_size_10">
+	   
+	   <GridView 
+	     android:id="@+id/gv_category"
+	     android:layout_width="match_parent"
+	     android:layout_height="match_parent"
+	     android:horizontalSpacing="6dp"
+	     android:numColumns="4"
+	     android:verticalSpacing="8dp"/>
+    </RelativeLayout>
+    
+  <RelativeLayout
+	    android:id="@+id/ddd"
+	    android:layout_width="match_parent"
+	    android:layout_height="140dp"
+	    android:background="@color/white"
+	    android:layout_marginTop="@dimen/margin_size_10">
+	   
+	   <ImageView 
+	     android:id="@+id/image_dd"
+	     android:layout_width="match_parent"
+	     android:layout_height="match_parent"/>
+    </RelativeLayout>
+    
 </LinearLayout>

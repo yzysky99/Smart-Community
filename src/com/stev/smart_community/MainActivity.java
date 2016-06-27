@@ -9,17 +9,17 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 
-import com.stev.smart_community.community.CommunityPage;
-import com.stev.smart_community.home.HomePage;
-import com.stev.smart_community.me.MePage;
-import com.stev.smart_community.server.ServerPage;
+import com.stev.smart_community.community.CommunityAcitvity;
+import com.stev.smart_community.home.HomeAcitvity;
+import com.stev.smart_community.me.MeAcitvity;
+import com.stev.smart_community.server.ServerAcitvity;
 
 public class MainActivity extends FragmentActivity implements OnClickListener{
 
-	private HomePage homePage;
-	private CommunityPage communityPage;
-	private	ServerPage serverPage;
-	private MePage mePage;
+	private HomeAcitvity homePage;
+	private CommunityAcitvity communityPage;
+	private	ServerAcitvity serverPage;
+	private MeAcitvity mePage;
 	
 	private ImageView ivHome;
 	private ImageView ivCommunity;
@@ -45,7 +45,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener{
 		ivMe.setOnClickListener(this);
 		
 		if (homePage == null) {
-			homePage = new HomePage();
+			homePage = new HomeAcitvity();
 			addFragment(homePage);
 			showFragment(homePage);
 		} else {
@@ -64,7 +64,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener{
 		switch (v.getId()) {
 		case R.id.iv_home:
 			if (homePage == null) {
-				homePage = new HomePage();
+				homePage = new HomeAcitvity();
 				addFragment(homePage);
 				showFragment(homePage);
 			} else {
@@ -76,7 +76,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener{
 			break;
 		case R.id.iv_server:
 			if (serverPage == null) {
-				serverPage = new ServerPage();
+				serverPage = new ServerAcitvity();
 				if (!serverPage.isHidden()) {
 					addFragment(serverPage);
 					showFragment(serverPage);
@@ -93,14 +93,14 @@ public class MainActivity extends FragmentActivity implements OnClickListener{
 				removeFragment(communityPage);
 				communityPage = null;
 			}
-			communityPage = new CommunityPage();
+			communityPage = new CommunityAcitvity();
 			addFragment(communityPage);
 			showFragment(communityPage);
 			ivCommunity.setImageResource(R.drawable.bt_community_pressed);
 			break;
 		case R.id.iv_me:
 			if (mePage == null) {
-				mePage = new MePage();
+				mePage = new MeAcitvity();
 				if (!mePage.isHidden()) {
 					addFragment(mePage);
 					showFragment(mePage);

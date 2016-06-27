@@ -11,4 +11,14 @@
 	<string name="default_weather_cond">多云</string>
 	<string name="default_temp_cond">10℃-20℃</string>
 	
+	<string name="notice">小区公告</string>
+	
+	<string name="category_1">联系物业</string>
+	<string name="category_2">账单缴费</string>
+	<string name="category_3">家政服务</string>
+	<string name="category_4">房屋出租</string>
+	<string name="category_5">我的邻居</string>
+	<string name="category_6">智慧生活</string>
+	<string name="category_7">社区公告</string>
+	<string name="category_8">餐饮服务</string>
 </resources>
