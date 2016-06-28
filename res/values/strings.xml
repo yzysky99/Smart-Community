@@ -50,4 +50,6 @@
 	<string name="me_neighbor">我的邻居</string>
 	<string name="me_settings">设置</string>
 	<string name="me_server_phone">服务电话</string>
+	
+	<string name="me_default_userid">yzy</string>
 </resources>

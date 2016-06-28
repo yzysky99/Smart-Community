@@ -60,5 +60,6 @@
         </activity>
         
         <activity android:name="com.stev.smart_community.home.NoticeAcitvity" />
+        <activity android:name="com.stev.smart_community.me.UserInfoAcitvity" />
     </application>
 </manifest>
