@@ -4,3 +4,11 @@
 #
 **/gen
 **/bin
+
+#
+# and Android Studio
+#
+build/
+**/build/
+.gradle/
+**/local.properties

@@ -1,0 +1,25 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 22
+    buildToolsVersion "24.0.0"
+
+    defaultConfig {
+        applicationId "com.stev.smart_community"
+        minSdkVersion 15
+        targetSdkVersion 21
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+}
+
+dependencies {
+    compile 'com.android.support:support-v4:22.2.1'
+    compile files('libs/baidumapapi_v3_5_0.jar')
+    compile files('libs/locSDK_6.23.jar')
+}
