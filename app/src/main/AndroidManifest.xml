@@ -59,7 +59,7 @@
             </intent-filter>
         </activity>
         
-        <activity android:name="com.stev.smart_community.home.NoticeAcitvity" />
-        <activity android:name="com.stev.smart_community.me.UserInfoAcitvity" />
+        <activity android:name=".home.NoticeActivity" />
+        <activity android:name=".me.UserInfoActivity" />
     </application>
 </manifest>

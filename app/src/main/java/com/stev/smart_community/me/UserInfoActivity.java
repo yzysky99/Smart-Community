@@ -5,7 +5,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.widget.TextView;
 
-public class UserInfoAcitvity extends Activity {
+public class UserInfoActivity extends Activity {
 	TextView mUserName;
 
 	@Override

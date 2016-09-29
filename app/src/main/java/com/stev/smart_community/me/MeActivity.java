@@ -12,9 +12,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.stev.smart_community.R;
-import com.stev.smart_community.home.NoticeAcitvity;
 
-public class MeAcitvity extends Fragment {
+public class MeActivity extends Fragment {
 
 	ImageView mUserAvatar;
 	TextView mUserID;
@@ -42,7 +41,7 @@ public class MeAcitvity extends Fragment {
 			
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(getActivity(), UserInfoAcitvity.class);
+				Intent intent = new Intent(getActivity(), UserInfoActivity.class);
 				startActivity(intent);
 			}
 		});

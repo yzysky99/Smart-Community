@@ -5,7 +5,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.widget.TextView;
 
-public class NoticeAcitvity extends Activity {
+public class NoticeActivity extends Activity {
 	TextView mNoticeTv;
 
 	@Override

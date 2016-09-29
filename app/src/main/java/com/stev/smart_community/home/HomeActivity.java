@@ -8,11 +8,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.R.integer;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -21,7 +19,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -38,7 +35,7 @@ import com.stev.smart_community.customview.CategoryAdapter;
 import com.stev.smart_community.weather.*;
 import com.stev.smart_community.R;
 
-public class HomeAcitvity extends Fragment {
+public class HomeActivity extends Fragment {
 	protected static final String TAG = "HomePage";
 	private LocationService locationService;
 	private TextView mCityName;
@@ -125,7 +122,7 @@ public class HomeAcitvity extends Fragment {
 		mGridViewCategory.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-				Intent intent = new Intent(getActivity(), NoticeAcitvity.class);
+				Intent intent = new Intent(getActivity(), NoticeActivity.class);
 				startActivity(intent);
 			}
 		});
