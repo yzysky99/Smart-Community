@@ -60,13 +60,10 @@ public class HomeActivity extends Fragment {
 	private int[][] mCategoryPic = { 
 			{R.drawable.category_pic_1, R.string.category_1},
 			{R.drawable.category_pic_2, R.string.category_2},  
-			{R.drawable.category_pic_3, R.string.category_3},
-			{R.drawable.category_pic_4, R.string.category_4}, 
-			{R.drawable.category_pic_5, R.string.category_5}, 
-			{R.drawable.category_pic_6, R.string.category_6}, 
-			{R.drawable.category_pic_7, R.string.category_7}, 
-			{R.drawable.category_pic_8, R.string.category_8}};
-	
+			{R.drawable.category_pic_3, R.string.category_6},
+			{R.drawable.category_pic_4, R.string.category_7}
+	};
+
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View view = LayoutInflater.from(getActivity()).inflate(R.layout.home_page, null);
@@ -121,9 +118,28 @@ public class HomeActivity extends Fragment {
 		
 		mGridViewCategory.setOnItemClickListener(new OnItemClickListener() {
 			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-				Intent intent = new Intent(getActivity(), NoticeActivity.class);
-				startActivity(intent);
+			public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
+				Log.d(TAG,"stev position = " + position + " arg3 = " + arg3);
+				switch (position) {
+					case 0:
+						Intent tenementIntent = new Intent(getActivity(), TenementActivity.class);
+						startActivity(tenementIntent);
+						break;
+					case 1:
+						Intent billPaymentIntent = new Intent(getActivity(), BillPaymentActivity.class);
+						startActivity(billPaymentIntent);
+						break;
+					case 2:
+						Intent smartLifeIntent = new Intent(getActivity(), SmartLifeActivity.class);
+						startActivity(smartLifeIntent);
+						break;
+					case 3:
+						Intent noticeIntent = new Intent(getActivity(), NoticeActivity.class);
+						startActivity(noticeIntent);
+						break;
+					default:
+						break;
+				}
 			}
 		});
 		

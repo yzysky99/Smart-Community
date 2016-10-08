@@ -19,13 +19,13 @@
 	    android:layout_height="@dimen/status_bar_size"
 	    android:background="@color/status_bar" >
 
-	    <Button
-	        android:id="@+id/city_setting"
-	        android:layout_width="@dimen/button_size"
-	        android:layout_height="@dimen/button_size"
-	        android:layout_centerVertical="true"
-	        android:layout_marginLeft="@dimen/margin_size_10"
-	        android:background="@drawable/setting" />
+	    <!--<Button-->
+	        <!--android:id="@+id/city_setting"-->
+	        <!--android:layout_width="@dimen/button_size"-->
+	        <!--android:layout_height="@dimen/button_size"-->
+	        <!--android:layout_centerVertical="true"-->
+	        <!--android:layout_marginLeft="@dimen/margin_size_10"-->
+	        <!--android:background="@drawable/setting" />-->
 	
 	    <TextView
 	        android:id="@+id/home_title"
@@ -37,14 +37,14 @@
 	        android:text="@string/home_title"
 	        android:textSize="@dimen/text_size_24sp" />
 	
-	    <Button
-	        android:id="@+id/refresh_weather"
-	        android:layout_width="@dimen/button_size"
-	        android:layout_height="@dimen/button_size"
-	        android:layout_alignParentRight="true"
-	        android:layout_centerVertical="true"
-	        android:layout_marginRight="@dimen/margin_size_10"
-	        android:background="@drawable/refresh" />
+	    <!--<Button-->
+	        <!--android:id="@+id/refresh_weather"-->
+	        <!--android:layout_width="@dimen/button_size"-->
+	        <!--android:layout_height="@dimen/button_size"-->
+	        <!--android:layout_alignParentRight="true"-->
+	        <!--android:layout_centerVertical="true"-->
+	        <!--android:layout_marginRight="@dimen/margin_size_10"-->
+	        <!--android:background="@drawable/refresh" />-->
 	</RelativeLayout>
    
 	    <RelativeLayout
@@ -117,25 +117,35 @@
 	    <RelativeLayout
 		    android:id="@+id/category_layout"
 		    android:layout_width="match_parent"
-		    android:layout_height="140dp"
+		    android:layout_height="wrap_content"
 		    android:background="@color/white"
 		    android:layout_marginTop="@dimen/margin_size_10">
 		   
 		   <GridView 
 		     android:id="@+id/gv_category"
 		     android:layout_width="match_parent"
-		     android:layout_height="match_parent"
+		     android:layout_height="wrap_content"
 		     android:horizontalSpacing="6dp"
 		     android:numColumns="4"
 		     android:verticalSpacing="8dp"/>
 	    </RelativeLayout>
-	    
+
 	    <LinearLayout 
 	        android:layout_width="match_parent"
         	android:layout_height="match_parent"
         	android:orientation="vertical"
         	android:layout_marginTop="@dimen/margin_size_10" >
-		   
+
+			<TextView
+				android:id="@+id/around_shop"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_below="@id/category_layout"
+				android:background="@color/white"
+				android:textColor="@color/black"
+				android:text="@string/around_shop"
+				android:textSize="@dimen/text_size_16sp" />
+
 		    <com.stev.smart_community.customview.DisplayListView 
 		        android:id="@+id/lv_shop_info"
 			    android:layout_width="match_parent"

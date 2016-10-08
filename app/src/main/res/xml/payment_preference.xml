@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <Preference
+        android:key="water_charge"
+        android:title="@string/water_charge"/>
+        <PreferenceCategory />
+
+        <Preference
+            android:key="electric_charge"
+            android:title="@string/electric_charge" />
+        <PreferenceCategory />
+
+    <Preference
+        android:key="gas_charge"
+        android:title="@string/gas_charge" />
+    <PreferenceCategory />
+
+    <Preference
+        android:key="broadband_charge"
+        android:title="@string/broadband_charge" />
+    <PreferenceCategory />
+
+    <Preference
+        android:key="tv_charge"
+        android:title="@string/tv_charge" />
+    <PreferenceCategory />
+
+</PreferenceScreen>

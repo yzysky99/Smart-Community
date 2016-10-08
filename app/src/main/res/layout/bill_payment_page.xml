@@ -16,14 +16,15 @@
             android:layout_centerInParent="true"
             android:textColor="@color/white"
             android:gravity="center_horizontal"
-            android:text="@string/notice"
+            android:text="@string/billPayment"
             android:textSize="@dimen/text_size_24sp" />
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/tv_notice"
+    <ListView
+        android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_size_20"
-        android:textSize="@dimen/text_size_24sp" />
+        android:dividerHeight="6dp"
+        android:background="@color/white"/>
 </LinearLayout>

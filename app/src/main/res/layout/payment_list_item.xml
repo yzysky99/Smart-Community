@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+	android:background="@color/white"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/iv_logo"
+        android:layout_width="@dimen/size_48dp"
+        android:layout_height="@dimen/size_48dp"
+        android:src="@drawable/kfc_logo"/>
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_size_6"
+        android:layout_gravity="center_vertical"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/text_size_16sp" />
+
+    <TextView
+        android:id="@+id/tv_notice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_size_6"
+        android:gravity="left"
+        android:layout_marginTop="@dimen/margin_size_1"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/text_size_10sp"
+        android:visibility="gone"/>
+</LinearLayout>

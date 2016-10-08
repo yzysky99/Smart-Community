@@ -24,7 +24,9 @@ public class CommunityActivity extends Fragment {
 			{R.drawable.category_pic_2, R.string.community_category_2},  
 			{R.drawable.category_pic_3, R.string.community_category_3},
 			{R.drawable.category_pic_4, R.string.community_category_4}, 
-			{R.drawable.category_pic_5, R.string.community_category_5}};
+			{R.drawable.category_pic_5, R.string.community_category_5},
+			{R.drawable.category_pic_6, R.string.community_category_6}
+	};
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

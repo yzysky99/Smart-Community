@@ -13,7 +13,7 @@ public class NoticeActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.notice_page);
 		mNoticeTv = (TextView)findViewById(R.id.tv_notice);
-		mNoticeTv.setText(R.string.notice);
+		mNoticeTv.setText(R.string.notice_context);
 	}
 
 	@Override

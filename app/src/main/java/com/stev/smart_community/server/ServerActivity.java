@@ -24,7 +24,12 @@ public class ServerActivity extends Fragment {
 			{R.drawable.category_pic_2, R.string.server_category_2},  
 			{R.drawable.category_pic_3, R.string.server_category_3},
 			{R.drawable.category_pic_4, R.string.server_category_4}, 
-			{R.drawable.category_pic_5, R.string.server_category_5}};
+			{R.drawable.category_pic_5, R.string.server_category_5},
+			{R.drawable.category_pic_6, R.string.server_category_6},
+			{R.drawable.category_pic_7, R.string.server_category_7},
+			{R.drawable.category_pic_8, R.string.server_category_8}
+
+	};
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
