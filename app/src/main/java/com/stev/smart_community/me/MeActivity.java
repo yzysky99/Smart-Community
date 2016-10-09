@@ -1,6 +1,7 @@
 package com.stev.smart_community.me;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.stev.smart_community.Constants;
 import com.stev.smart_community.R;
 
 public class MeActivity extends Fragment {
@@ -36,7 +38,10 @@ public class MeActivity extends Fragment {
 	
 	private void initData() {
 //		mUserAvatar.setImageBitmap(bm);
-		mUserID.setText(getResources().getString(R.string.me_default_userid));
+		SharedPreferences shared = getActivity().getSharedPreferences(Constants.USER_INFO, 0);
+		String name = shared.getString(Constants.USER_NAME, getString(R.string.me_default_userid));
+		mUserID.setText(name);
+
 		mUserInfo.setOnClickListener(new OnClickListener() {
 			
 			@Override
