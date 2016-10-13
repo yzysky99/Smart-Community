@@ -84,6 +84,26 @@
         </activity>
         <activity android:name=".ui.RegisterActivity">
         </activity>
+        <activity
+            android:name=".me.AvatarActivity"
+            android:label="@string/title_activity_avatar">
+        </activity>
+        <activity
+            android:name=".me.UserInfoEditActivity"
+            android:label="@string/title_activity_user_info_edit">
+        </activity>
+        <activity
+            android:name=".me.EditNicknameActivity"
+            android:label="@string/title_activity_edit_nickname">
+        </activity>
+        <activity
+            android:name=".me.EditSinagtureActivity"
+            android:label="@string/title_activity_edit_sinagture">
+        </activity>
+        <activity
+            android:name=".me.EditPasswordActivity"
+            android:label="@string/title_activity_edit_password">
+        </activity>
     </application>
 
 </manifest>

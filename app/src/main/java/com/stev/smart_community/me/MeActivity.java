@@ -1,5 +1,6 @@
 package com.stev.smart_community.me;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -26,7 +27,6 @@ public class MeActivity extends Fragment {
 
 		View view = LayoutInflater.from(getActivity()).inflate(R.layout.me_page, null);
 		initView(view);
-		initData();
 		return view;
 	}
 	
@@ -38,8 +38,8 @@ public class MeActivity extends Fragment {
 	
 	private void initData() {
 //		mUserAvatar.setImageBitmap(bm);
-		SharedPreferences shared = getActivity().getSharedPreferences(Constants.USER_INFO, 0);
-		String name = shared.getString(Constants.USER_NAME, getString(R.string.me_default_userid));
+		SharedPreferences shared = getActivity().getSharedPreferences(Constants.USER_INFO, Context.MODE_WORLD_READABLE);
+		final String name = shared.getString(Constants.UserInfo.USER_NAME, getString(R.string.me_default_userid));
 		mUserID.setText(name);
 
 		mUserInfo.setOnClickListener(new OnClickListener() {
@@ -47,6 +47,7 @@ public class MeActivity extends Fragment {
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(getActivity(), UserInfoActivity.class);
+//				intent.putExtra(Constants.USER_NAME, name);
 				startActivity(intent);
 			}
 		});
@@ -57,5 +58,10 @@ public class MeActivity extends Fragment {
 		// TODO Auto-generated method stub
 		super.onDestroy();
 	}
-	
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		initData();
+	}
 }

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.stev.smart_community.me.UserInfoEditActivity">
+
+    <include layout="@layout/action_bar_view" />
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:overScrollMode="never">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/user_nickname"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/size_48dp"
+                android:background="@drawable/btn_select"
+                android:paddingLeft="@dimen/margin_size_20">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="@string/user_nickname"
+                    android:textSize="@dimen/text_size_18sp"/>
+
+                <ImageView
+                    android:layout_width="@dimen/size_10dp"
+                    android:layout_height="@dimen/size_20dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/margin_size_20"
+                    android:src="@drawable/sub_btn_right_image"/>
+            </RelativeLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="#33000000"/>
+
+            <RelativeLayout
+                android:id="@+id/user_avartar"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/size_48dp"
+                android:background="@drawable/btn_select"
+                android:paddingLeft="@dimen/margin_size_20">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="@string/user_avatar"
+                    android:textSize="@dimen/text_size_18sp"/>
+
+                <ImageView
+                    android:layout_width="@dimen/size_10dp"
+                    android:layout_height="@dimen/size_20dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/margin_size_20"
+                    android:src="@drawable/sub_btn_right_image"/>
+            </RelativeLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="#33000000"/>
+
+            <RelativeLayout
+                android:id="@+id/user_sinagture"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/size_48dp"
+                android:background="@drawable/btn_select"
+                android:paddingLeft="@dimen/margin_size_20">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="@string/user_signature"
+                    android:textSize="@dimen/text_size_18sp"/>
+
+                <ImageView
+                    android:layout_width="@dimen/size_10dp"
+                    android:layout_height="@dimen/size_20dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/margin_size_20"
+                    android:src="@drawable/sub_btn_right_image"/>
+            </RelativeLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="#33000000"/>
+
+            <RelativeLayout
+                android:id="@+id/user_password"
+                android:layout_width="fill_parent"
+                android:layout_height="@dimen/size_48dp"
+                android:background="@drawable/btn_select"
+                android:paddingLeft="@dimen/margin_size_20">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:text="@string/user_password_edit"
+                    android:textSize="@dimen/text_size_18sp"/>
+
+                <ImageView
+                    android:layout_width="@dimen/size_10dp"
+                    android:layout_height="@dimen/size_20dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/margin_size_20"
+                    android:src="@drawable/sub_btn_right_image"/>
+            </RelativeLayout>
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="#33000000"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
+
+
+

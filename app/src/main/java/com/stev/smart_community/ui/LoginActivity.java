@@ -81,15 +81,15 @@ public class LoginActivity extends Activity{
 
         mProgressView = findViewById(R.id.login_progress);
 
-        mShared = getSharedPreferences(Constants.USER_INFO, 0);
+        mShared = getSharedPreferences(Constants.USER_INFO, Context.MODE_WORLD_READABLE);
         mEditor = mShared.edit();
 
-        if (mShared.getBoolean(Constants.IS_LOGIN, false)) {
+        if (mShared.getBoolean(Constants.UserInfo.IS_LOGIN, false)) {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             finish();
         } else {
-            mEditor.putBoolean(Constants.IS_LOGIN, false);
+            mEditor.putBoolean(Constants.UserInfo.IS_LOGIN, false);
             mEditor.commit();
         }
     }
@@ -174,8 +174,8 @@ public class LoginActivity extends Activity{
                 return false;
             }
 
-            if (mPhone == mShared.getString(Constants.USER_PHONE, "")
-                    && mPassword == mShared.getString(Constants.USER_PASSWORD, "")) {
+            if (mPhone == mShared.getString(Constants.UserInfo.USER_PHONE, "")
+                    && mPassword == mShared.getString(Constants.UserInfo.USER_PASSWORD, "")) {
                 return true;
             }
 

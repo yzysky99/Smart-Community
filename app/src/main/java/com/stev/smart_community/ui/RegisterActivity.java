@@ -1,6 +1,7 @@
 package com.stev.smart_community.ui;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -46,7 +47,7 @@ public class RegisterActivity extends Activity {
         mLoginView = (TextView) findViewById(R.id.login);
         mProgressView = findViewById(R.id.register_progress);
 
-        mShared =getSharedPreferences(Constants.USER_INFO, 0);
+        mShared =getSharedPreferences(Constants.USER_INFO,  Context.MODE_WORLD_READABLE);
         mEditor = mShared.edit();
 
         mRegister.setOnClickListener(new View.OnClickListener() {
@@ -162,10 +163,10 @@ public class RegisterActivity extends Activity {
 
             Log.d(TAG,"onPostExecute success " + success);
             if (success) {
-                mEditor.putBoolean(Constants.IS_LOGIN, true);
-                mEditor.putString(Constants.USER_NAME, mName);
-                mEditor.putString(Constants.USER_PHONE, mPhone);
-                mEditor.putString(Constants.USER_PASSWORD, mPassword);
+                mEditor.putBoolean(Constants.UserInfo.IS_LOGIN, true);
+                mEditor.putString(Constants.UserInfo.USER_NAME, mName);
+                mEditor.putString(Constants.UserInfo.USER_PHONE, mPhone);
+                mEditor.putString(Constants.UserInfo.USER_PASSWORD, mPassword);
                 mEditor.commit();
 
                 Intent intent = new Intent(RegisterActivity.this, MainActivity.class);

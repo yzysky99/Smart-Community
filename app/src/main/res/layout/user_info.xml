@@ -20,9 +20,79 @@
             android:textSize="@dimen/text_size_24sp" />
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/tv_user_name"
-        android:layout_width="wrap_content"
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/size_120dp"
+        android:background="@color/user_info_bk">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_marginBottom="@dimen/size_5dp"
+            android:layout_marginLeft="@dimen/size_120dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:singleLine="true"
+                android:textColor="@color/white"
+                android:maxEms="7"
+                android:textSize="@dimen/text_size_24sp" />
+        </LinearLayout>
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/text_size_24sp" />
+        android:layout_marginLeft="@dimen/size_20dp"
+        android:layout_marginTop="-42dp"
+        android:orientation="horizontal" >
+
+        <FrameLayout
+            android:id="@+id/fl_login"
+            android:layout_width="@dimen/size_86dp"
+            android:layout_height="@dimen/size_86dp">
+
+            <ImageView
+                android:id="@+id/iv_avatar"
+                android:layout_width="@dimen/size_80dp"
+                android:layout_height="@dimen/size_80dp"
+                android:layout_gravity="center"
+                android:background="@color/white"
+                android:src="@drawable/default_avatar" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/size_20dp"
+            android:layout_marginLeft="@dimen/size_16dp"
+            android:layout_marginTop="@dimen/size_50dp"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/tv_signature"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:paddingRight="@dimen/size_10dp"
+                android:text="@string/me_default_sinagture"
+                android:textSize="@dimen/size_16dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_user_info_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_16dp"
+        android:layout_marginLeft="@dimen/size_10dp"
+        android:layout_marginRight="@dimen/size_10dp"
+        android:textColor="@color/turquoise"
+        android:textSize="@dimen/text_size_24sp"
+        android:text="@string/user_info_edit"/>
 </LinearLayout>

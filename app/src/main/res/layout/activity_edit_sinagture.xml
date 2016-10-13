@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.stev.smart_community.me.EditSinagtureActivity">
+
+    <include layout="@layout/action_bar_view" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/size_20dp"
+        android:layout_marginRight="@dimen/size_20dp"
+        android:layout_marginTop="@dimen/size_30dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/title_activity_edit_sinagture"
+            android:textSize="@dimen/text_size_20sp"/>
+
+        <EditText
+            android:id="@+id/edit_sinagture"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_200dp"
+            android:layout_marginTop="@dimen/margin_size_2"
+            android:background="@color/white"
+            android:gravity="left"
+            android:textColor="@color/darkgray"
+            android:textSize="@dimen/text_size_20sp"/>
+
+        <Button
+            android:id="@+id/btn_save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_48dp"
+            android:textSize="@dimen/text_size_20sp"
+            android:textColor="@color/turquoise"
+            android:text="@string/button_save"/>
+    </LinearLayout>
+</LinearLayout>
