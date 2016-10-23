@@ -46,7 +46,7 @@ public class BillPaymentActivity extends Activity {
 
 		for (String str : strArr) {
 			CategoryInfo categoryInfo = new CategoryInfo();
-			categoryInfo.logo = BitmapFactory.decodeResource(getResources(), R.drawable.kfc_logo);
+			categoryInfo.logo = BitmapFactory.decodeResource(getResources(), R.drawable.shop_logo);
 			categoryInfo.category = str;
 			paymentAdapter.addData(categoryInfo);
 		}

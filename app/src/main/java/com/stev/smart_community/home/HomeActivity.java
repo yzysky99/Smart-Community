@@ -3,6 +3,7 @@ package com.stev.smart_community.home;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -31,6 +32,7 @@ import com.baidu.location.BDLocationListener;
 import com.baidu.location.Poi;
 import com.baidu.location.service.LocationService;
 import com.stev.smart_community.CommunityApplication;
+import com.stev.smart_community.Constants;
 import com.stev.smart_community.customview.CategoryAdapter;
 import com.stev.smart_community.weather.*;
 import com.stev.smart_community.R;
@@ -145,17 +147,32 @@ public class HomeActivity extends Fragment {
 		
 		mShopInfoLV = (ListView)view.findViewById(R.id.lv_shop_info);
 		shopAdapter = new ShopAdapter(getActivity());
-		
-		ShopInfo shopInfo = new ShopInfo();
-		shopInfo.shopLogo = BitmapFactory.decodeResource(getResources(), R.drawable.kfc_logo);
-		shopInfo.shopName = getResources().getString(R.string.shop_name);
-//		shopInfo.shopRatingBar
-		shopInfo.shopPrice = getResources().getString(R.string.shop_price);
 		for(int i = 0; i< 10; i++) {
+			ShopInfo shopInfo = new ShopInfo();
+			Random random = new Random();
+			shopInfo.shopLogo = BitmapFactory.decodeResource(getResources(), R.drawable.shop_logo);
+			shopInfo.shopName = getResources().getString(R.string.shop_name);
+		    shopInfo.shopRatingBar = random.nextInt(4) + 1;
+			shopInfo.shopPrice =  "￥" + (random.nextInt(100) + 100);
+			shopInfo.shopId = i + "";
 			mShopInfoList.add(i, shopInfo);
 		}
+
 		shopAdapter.updateData(mShopInfoList);
 		mShopInfoLV.setAdapter(shopAdapter);
+		mShopInfoLV.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				Intent intent = new Intent(getActivity(), ShopProfileActivity.class);
+				ShopInfo shopInfoItem = (ShopInfo) shopAdapter.getItem(position);
+				intent.putExtra(Constants.ShopInfo.SHOP_INFO_ID, shopInfoItem.shopId);
+				intent.putExtra(Constants.ShopInfo.SHOP_INFO_LOGO, shopInfoItem.shopLogo);
+				intent.putExtra(Constants.ShopInfo.SHOP_INFO_NAME, shopInfoItem.shopName);
+				intent.putExtra(Constants.ShopInfo.SHOP_INFO_RATING_BAR, shopInfoItem.shopRatingBar);
+				intent.putExtra(Constants.ShopInfo.SHOP_INFO_PRICE, shopInfoItem.shopPrice);
+				startActivity(intent);
+			}
+		});
 	}
 	
 	
@@ -393,6 +410,7 @@ public class HomeActivity extends Fragment {
 			editor.putString("weatherInfo", txt);
 			editor.putString("temp", tmp);
 			editor.putInt("weatherIcon", resID);
+			editor.commit();
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}

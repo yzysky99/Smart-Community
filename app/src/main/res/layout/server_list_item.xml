@@ -11,23 +11,23 @@
         android:padding="@dimen/margin_size_4" >
 
         <ImageView
-            android:id="@+id/iv_shop_logo"
+            android:id="@+id/logo"
             android:layout_width="@dimen/size_48dp"
             android:layout_height="@dimen/size_48dp"
             android:src="@drawable/shop_logo"/>
 
         <TextView
-            android:id="@+id/tv_shop_name"
+            android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/margin_size_2"
-            android:layout_toRightOf="@id/iv_shop_logo"
+            android:layout_toRightOf="@id/logo"
             android:gravity="left"
             android:textColor="@color/black"
             android:textSize="@dimen/text_size_16sp" />
         
         <RatingBar 
-            android:id="@+id/rb_shop_ratingbar"
+            android:id="@+id/ratingbar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             style="?android:attr/ratingBarStyleSmall"
@@ -35,23 +35,23 @@
             android:stepSize="0.5"
             android:rating="3.5"
             android:isIndicator="true"
-            android:layout_below="@id/tv_shop_name"
-            android:layout_marginTop="@dimen/margin_size_1"
+            android:layout_below="@id/name"
+            android:layout_marginTop="@dimen/margin_size_4"
             android:layout_marginLeft="@dimen/margin_size_2"
-            android:layout_toRightOf="@id/iv_shop_logo"
+            android:layout_toRightOf="@id/logo"
             android:gravity="left"/>
         
-        <TextView
-            android:id="@+id/tv_shop_price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/rb_shop_ratingbar"
-            android:layout_marginLeft="@dimen/margin_size_2"
-            android:layout_toRightOf="@id/iv_shop_logo"
-            android:gravity="left"
-            android:layout_marginTop="@dimen/margin_size_1"
-            android:text="@string/shop_price"
-            android:textColor="@color/gray"
-            android:textSize="@dimen/text_size_10sp" />
+        <!--<TextView-->
+            <!--android:id="@+id/price"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_below="@id/ratingbar"-->
+            <!--android:layout_marginLeft="@dimen/margin_size_2"-->
+            <!--android:layout_toRightOf="@id/logo"-->
+            <!--android:gravity="left"-->
+            <!--android:layout_marginTop="@dimen/margin_size_1"-->
+            <!--android:text="@string/shop_price"-->
+            <!--android:textColor="@color/gray"-->
+            <!--android:textSize="@dimen/text_size_10sp" />-->
 	</RelativeLayout>
 </LinearLayout>

@@ -46,59 +46,59 @@
 	        android:textColor="@color/red" />
     </RelativeLayout>
     
-    <RelativeLayout 
-        android:id="@+id/rl_my_order"
-        android:layout_width="match_parent"
-	    android:layout_height="@dimen/size_64dp"
-	    android:layout_marginTop="@dimen/margin_size_1"
-	    android:background="@color/white">
-	    
-	    <ImageView 
-	        android:id="@+id/iv_my_order"
-	        android:layout_width="@dimen/size_64dp"
-	        android:layout_height="@dimen/size_64dp"
-	        android:layout_marginLeft="@dimen/margin_size_14"
-	        android:layout_centerVertical="true"
-	        android:src="@drawable/me_order" />
-	    
-	    <TextView 
-	        android:id="@+id/tv_my_order"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:textSize="@dimen/text_size_16sp"
-	        android:layout_centerVertical="true"
-	        android:text="@string/me_order"
-	        android:layout_toRightOf="@id/iv_my_order"
-	        android:layout_marginLeft="@dimen/margin_size_10"
-	        android:textColor="@color/red" />
-    </RelativeLayout>
-    
-    <RelativeLayout 
-        android:id="@+id/rl_my_neighbor"
-        android:layout_width="match_parent"
-	    android:layout_height="@dimen/size_64dp"
-	    android:layout_marginTop="@dimen/margin_size_16"
-	    android:background="@color/white">
-	    
-	    <ImageView 
-	        android:id="@+id/iv_my_neighbor"
-	        android:layout_width="@dimen/size_64dp"
-	        android:layout_height="@dimen/size_64dp"
-	        android:layout_marginLeft="@dimen/margin_size_14"
-	        android:layout_centerVertical="true"
-	        android:src="@drawable/me_neighbor" />
-	    
-	    <TextView 
-	        android:id="@+id/tv_my_neighbor"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:textSize="@dimen/text_size_16sp"
-	        android:layout_centerVertical="true"
-	        android:text="@string/me_neighbor"
-	        android:layout_toRightOf="@id/iv_my_neighbor"
-	        android:layout_marginLeft="@dimen/margin_size_10"
-	        android:textColor="@color/red" />
-    </RelativeLayout>
+    <!--<RelativeLayout -->
+        <!--android:id="@+id/rl_my_order"-->
+        <!--android:layout_width="match_parent"-->
+	    <!--android:layout_height="@dimen/size_64dp"-->
+	    <!--android:layout_marginTop="@dimen/margin_size_1"-->
+	    <!--android:background="@color/white">-->
+	    <!---->
+	    <!--<ImageView -->
+	        <!--android:id="@+id/iv_my_order"-->
+	        <!--android:layout_width="@dimen/size_64dp"-->
+	        <!--android:layout_height="@dimen/size_64dp"-->
+	        <!--android:layout_marginLeft="@dimen/margin_size_14"-->
+	        <!--android:layout_centerVertical="true"-->
+	        <!--android:src="@drawable/me_order" />-->
+	    <!---->
+	    <!--<TextView -->
+	        <!--android:id="@+id/tv_my_order"-->
+	        <!--android:layout_width="wrap_content"-->
+	        <!--android:layout_height="wrap_content"-->
+	        <!--android:textSize="@dimen/text_size_16sp"-->
+	        <!--android:layout_centerVertical="true"-->
+	        <!--android:text="@string/me_order"-->
+	        <!--android:layout_toRightOf="@id/iv_my_order"-->
+	        <!--android:layout_marginLeft="@dimen/margin_size_10"-->
+	        <!--android:textColor="@color/red" />-->
+    <!--</RelativeLayout>-->
+    <!---->
+    <!--<RelativeLayout -->
+        <!--android:id="@+id/rl_my_neighbor"-->
+        <!--android:layout_width="match_parent"-->
+	    <!--android:layout_height="@dimen/size_64dp"-->
+	    <!--android:layout_marginTop="@dimen/margin_size_16"-->
+	    <!--android:background="@color/white">-->
+	    <!---->
+	    <!--<ImageView -->
+	        <!--android:id="@+id/iv_my_neighbor"-->
+	        <!--android:layout_width="@dimen/size_64dp"-->
+	        <!--android:layout_height="@dimen/size_64dp"-->
+	        <!--android:layout_marginLeft="@dimen/margin_size_14"-->
+	        <!--android:layout_centerVertical="true"-->
+	        <!--android:src="@drawable/me_neighbor" />-->
+	    <!---->
+	    <!--<TextView -->
+	        <!--android:id="@+id/tv_my_neighbor"-->
+	        <!--android:layout_width="wrap_content"-->
+	        <!--android:layout_height="wrap_content"-->
+	        <!--android:textSize="@dimen/text_size_16sp"-->
+	        <!--android:layout_centerVertical="true"-->
+	        <!--android:text="@string/me_neighbor"-->
+	        <!--android:layout_toRightOf="@id/iv_my_neighbor"-->
+	        <!--android:layout_marginLeft="@dimen/margin_size_10"-->
+	        <!--android:textColor="@color/red" />-->
+    <!--</RelativeLayout>-->
     
     <RelativeLayout 
         android:id="@+id/rl_my_settings"

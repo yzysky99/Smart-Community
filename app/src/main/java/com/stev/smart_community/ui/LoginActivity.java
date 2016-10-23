@@ -27,6 +27,7 @@ import android.widget.Toast;
 import com.stev.smart_community.Constants;
 import com.stev.smart_community.MainActivity;
 import com.stev.smart_community.R;
+import com.stev.smart_community.widget.ToastView;
 
 import java.util.List;
 
@@ -85,10 +86,12 @@ public class LoginActivity extends Activity{
         mEditor = mShared.edit();
 
         if (mShared.getBoolean(Constants.UserInfo.IS_LOGIN, false)) {
+            Log.d(TAG,"stevyang 111111");
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             finish();
         } else {
+            Log.d(TAG,"stevyang 222222");
             mEditor.putBoolean(Constants.UserInfo.IS_LOGIN, false);
             mEditor.commit();
         }
@@ -194,8 +197,9 @@ public class LoginActivity extends Activity{
                 startActivity(intent);
                 finish();
             } else {
-                mPasswordView.setError(getString(R.string.error_incorrect_password));
-                mPasswordView.requestFocus();
+                ToastView toast = new ToastView(LoginActivity.this, getString(R.string.error_incorrect_password));
+                toast.setGravity(Gravity.CENTER, 0, 0);
+                toast.show();
             }
         }
 

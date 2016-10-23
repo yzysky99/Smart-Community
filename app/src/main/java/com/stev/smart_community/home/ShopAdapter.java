@@ -17,7 +17,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 public class ShopAdapter extends BaseAdapter {
-	private static final String TAG = "CategoryAdapter";
+	private static final String TAG = "ShopAdapter";
 	private Context context;
 	private List<ShopInfo> mShopInfoList = new ArrayList<ShopInfo>();
 		

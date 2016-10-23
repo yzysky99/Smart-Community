@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.AdapterView.OnItemClickListener;
 
+import com.stev.smart_community.Constants;
 import com.stev.smart_community.R;
 import com.stev.smart_community.customview.CategoryAdapter;
 import com.stev.smart_community.home.NoticeActivity;
@@ -44,8 +45,10 @@ public class CommunityActivity extends Fragment {
 		
 		mGridViewCategory.setOnItemClickListener(new OnItemClickListener() {
 			@Override
-			public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-				Intent intent = new Intent(getActivity(), NoticeActivity.class);
+			public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
+				Intent intent = new Intent(getActivity(), CommunityCategoryActivity.class);
+				String category =  getString(mCategoryPic[position][1]);
+				intent.putExtra(Constants.CommunityInfo.COMMUNITY_CATEGORY, category);
 				startActivity(intent);
 			}
 		});

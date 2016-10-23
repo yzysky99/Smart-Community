@@ -6,6 +6,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 public class ShopInfo {
+	String shopId;
 	Bitmap shopLogo;
 	String shopName;
 	float shopRatingBar;

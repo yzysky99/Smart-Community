@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.stev.smart_community"
-          android:versionCode="1"
-          android:versionName="1.0">
+          android:versionCode="6"
+          android:versionName="2.1.10">
 
     <uses-sdk
         android:minSdkVersion="15"
@@ -103,6 +103,38 @@
         <activity
             android:name=".me.EditPasswordActivity"
             android:label="@string/title_activity_edit_password">
+        </activity>
+        <activity
+            android:name=".home.ShopProfileActivity"
+            android:label="@string/title_activity_shop_profile">
+        </activity>
+        <activity
+            android:name=".server.ServerProfileActivity"
+            android:label="@string/title_activity_server_profile">
+        </activity>
+        <activity
+            android:name=".server.ServerCategoryActivity"
+            android:label="@string/title_activity_service_category">
+        </activity>
+        <activity android:name=".community.CommunityCategoryActivity">
+        </activity>
+        <activity android:name=".community.CommunityProfileActivity">
+        </activity>
+        <activity
+            android:name=".me.SettingsActivity"
+            android:label="@string/title_activity_settings">
+        </activity>
+        <activity
+            android:name=".me.AboutActivity"
+            android:label="@string/title_activity_about">
+        </activity>
+        <activity
+            android:name=".me.SuggestActivity"
+            android:label="@string/title_activity_suggest">
+        </activity>
+        <activity
+            android:name=".me.VersionInfoActivity"
+            android:label="@string/title_activity_version_info">
         </activity>
     </application>
 

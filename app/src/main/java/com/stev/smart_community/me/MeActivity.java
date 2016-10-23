@@ -3,6 +3,7 @@ package com.stev.smart_community.me;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -21,6 +22,8 @@ public class MeActivity extends Fragment {
 	ImageView mUserAvatar;
 	TextView mUserID;
 	RelativeLayout mUserInfo;
+	RelativeLayout mMySettings;
+	RelativeLayout mServerPhone;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -34,6 +37,8 @@ public class MeActivity extends Fragment {
 		mUserAvatar = (ImageView)view.findViewById(R.id.iv_user_avatar);
 		mUserID = (TextView) view.findViewById(R.id.tv_user_id);
 		mUserInfo = (RelativeLayout) view.findViewById(R.id.rl_user_info);
+		mMySettings = (RelativeLayout) view.findViewById(R.id.rl_my_settings);
+		mServerPhone = (RelativeLayout) view.findViewById(R.id.rl_server_phone);
 	}
 	
 	private void initData() {
@@ -48,6 +53,25 @@ public class MeActivity extends Fragment {
 			public void onClick(View v) {
 				Intent intent = new Intent(getActivity(), UserInfoActivity.class);
 //				intent.putExtra(Constants.USER_NAME, name);
+				startActivity(intent);
+			}
+		});
+
+		mMySettings.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(getActivity(), SettingsActivity.class);
+				startActivity(intent);
+			}
+		});
+
+		mServerPhone.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent();
+				intent.setAction(Intent.ACTION_CALL);
+				int number = 10086;
+				intent.setData(Uri.parse("tel:"+ number));
 				startActivity(intent);
 			}
 		});
