@@ -1,7 +1,5 @@
 package com.stev.smart_community;
 
-import android.graphics.Bitmap;
-
 /**
  * Created by stevyang on 2016/10/9.
  */

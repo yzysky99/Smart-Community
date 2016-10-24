@@ -51,9 +51,6 @@ public class ShopProfileActivity extends Activity {
         float shopRatingBar = intent.getFloatExtra(Constants.ShopInfo.SHOP_INFO_RATING_BAR, 2);
         String shopPrice = intent.getStringExtra(Constants.ShopInfo.SHOP_INFO_PRICE);
 
-        Log.d(TAG,"stevyang shopName " + shopName);
-        Log.d(TAG,"stevyang shopRatingBar " + shopRatingBar);
-
         mTitle.setText(shopName);
 
         mLogo = (ImageView) findViewById(R.id.logo);

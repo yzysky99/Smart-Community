@@ -86,12 +86,10 @@ public class LoginActivity extends Activity{
         mEditor = mShared.edit();
 
         if (mShared.getBoolean(Constants.UserInfo.IS_LOGIN, false)) {
-            Log.d(TAG,"stevyang 111111");
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             finish();
         } else {
-            Log.d(TAG,"stevyang 222222");
             mEditor.putBoolean(Constants.UserInfo.IS_LOGIN, false);
             mEditor.commit();
         }
@@ -183,7 +181,7 @@ public class LoginActivity extends Activity{
             }
 
             // TODO: register the new account here.
-            return false;
+            return true;
         }
 
         @Override

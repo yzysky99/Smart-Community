@@ -77,10 +77,8 @@ public class SettingsActivity extends Activity implements View.OnClickListener {
                     public void onClick(DialogInterface dialog, int which) {
                         SharedPreferences shared = getSharedPreferences(Constants.USER_INFO, Context.MODE_WORLD_READABLE);
                         SharedPreferences.Editor editor = shared.edit();
-                        Log.d(TAG,"stevyang value = " + shared.getBoolean(Constants.UserInfo.IS_LOGIN, false));
                         editor.clear();
                         editor.commit();
-                        Log.d(TAG,"stevyang 22 value = " + shared.getBoolean(Constants.UserInfo.IS_LOGIN, false));
                         dialog.dismiss();
                         Intent loginIntent = new Intent(SettingsActivity.this, LoginActivity.class);
                         startActivity(loginIntent);
