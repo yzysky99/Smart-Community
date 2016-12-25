@@ -85,14 +85,14 @@ public class LoginActivity extends Activity{
         mShared = getSharedPreferences(Constants.USER_INFO, Context.MODE_WORLD_READABLE);
         mEditor = mShared.edit();
 
-        if (mShared.getBoolean(Constants.UserInfo.IS_LOGIN, false)) {
+//        if (mShared.getBoolean(Constants.UserInfo.IS_LOGIN, false)) {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             finish();
-        } else {
-            mEditor.putBoolean(Constants.UserInfo.IS_LOGIN, false);
-            mEditor.commit();
-        }
+//        } else {
+//            mEditor.putBoolean(Constants.UserInfo.IS_LOGIN, false);
+//            mEditor.commit();
+//        }
     }
 
     private void attemptLogin() {

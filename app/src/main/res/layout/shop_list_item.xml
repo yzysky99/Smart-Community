@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/margin_size_4"
+                android:paddingTop="@dimen/margin_size_4"
+                android:paddingLeft="@dimen/margin_size_2"
 	android:background="@color/white" >
 
     <RelativeLayout
@@ -25,7 +28,7 @@
             android:gravity="left"
             android:textColor="@color/black"
             android:textSize="@dimen/text_size_16sp" />
-        
+
         <RatingBar 
             android:id="@+id/rb_shop_ratingbar"
             android:layout_width="wrap_content"
@@ -54,4 +57,30 @@
             android:textColor="@color/gray"
             android:textSize="@dimen/text_size_10sp" />
 	</RelativeLayout>
-</LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/container_right"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:padding="@dimen/margin_size_4" >
+
+        <TextView
+            android:id="@+id/tv_shop_distance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/margin_size_2"
+            android:layout_marginTop="@dimen/margin_size_20"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_16sp" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tv_shop_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/margin_size_2"
+        android:layout_below="@id/container"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_16sp" />
+</RelativeLayout>

@@ -3,16 +3,15 @@ package com.stev.smart_community.home;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
@@ -34,8 +33,10 @@ import com.baidu.location.service.LocationService;
 import com.stev.smart_community.CommunityApplication;
 import com.stev.smart_community.Constants;
 import com.stev.smart_community.customview.CategoryAdapter;
+import com.stev.smart_community.net.DataRequest;
 import com.stev.smart_community.weather.*;
 import com.stev.smart_community.R;
+import com.stev.smart_community.widget.ShopInfo;
 
 public class HomeActivity extends Fragment {
 	protected static final String TAG = "HomePage";
@@ -147,25 +148,30 @@ public class HomeActivity extends Fragment {
 		
 		mShopInfoLV = (ListView)view.findViewById(R.id.lv_shop_info);
 		shopAdapter = new ShopAdapter(getActivity());
-		for(int i = 0; i< 10; i++) {
-			ShopInfo shopInfo = new ShopInfo();
-			Random random = new Random();
-			shopInfo.shopLogo = BitmapFactory.decodeResource(getResources(), R.drawable.shop_logo);
-			shopInfo.shopName = getResources().getString(R.string.shop_name);
-		    shopInfo.shopRatingBar = random.nextInt(4) + 1;
-			shopInfo.shopPrice =  "￥" + (random.nextInt(100) + 100);
-			shopInfo.shopId = i + "";
-			mShopInfoList.add(i, shopInfo);
-		}
+//		for(int i = 0; i< 10; i++) {
+//			ShopInfo shopInfo = new ShopInfo();
+//			Random random = new Random();
+//			shopInfo.shopLogo = BitmapFactory.decodeResource(getResources(), R.drawable.shop_logo);
+//			shopInfo.shopName = getResources().getString(R.string.shop_name);
+//		    shopInfo.shopRatingBar = random.nextInt(4) + 1;
+//			shopInfo.shopPrice =  "￥" + (random.nextInt(100) + 100);
+//			shopInfo.shopId = i + "";
+//			mShopInfoList.add(i, shopInfo);
+//		}
 
-		shopAdapter.updateData(mShopInfoList);
+//		shopAdapter.updateData(mShopInfoList);
 		mShopInfoLV.setAdapter(shopAdapter);
 		mShopInfoLV.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-				Intent intent = new Intent(getActivity(), ShopProfileActivity.class);
+//				Intent intent = new Intent(getActivity(), ShopProfileActivity.class);
+				Intent intent = new Intent(getActivity(), WebviewUI.class);
 				ShopInfo shopInfoItem = (ShopInfo) shopAdapter.getItem(position);
+
+				intent.putExtra(Constants.ShopInfo.SHOP_DETAIL_URL, shopInfoItem.detailUrl);
+
 				intent.putExtra(Constants.ShopInfo.SHOP_INFO_ID, shopInfoItem.shopId);
+				intent.putExtra(Constants.ShopInfo.SHOP_DETAIL_URL, shopInfoItem.detailUrl);
 				intent.putExtra(Constants.ShopInfo.SHOP_INFO_LOGO, shopInfoItem.shopLogo);
 				intent.putExtra(Constants.ShopInfo.SHOP_INFO_NAME, shopInfoItem.shopName);
 				intent.putExtra(Constants.ShopInfo.SHOP_INFO_RATING_BAR, shopInfoItem.shopRatingBar);
@@ -225,7 +231,7 @@ public class HomeActivity extends Fragment {
 	private BDLocationListener mListener = new BDLocationListener() {
 
 		@Override
-		public void onReceiveLocation(BDLocation location) {
+		public void onReceiveLocation(final BDLocation location) {
 			// TODO Auto-generated method stub
 			if (null != location && location.getLocType() != BDLocation.TypeServerError) {
 				StringBuffer sb = new StringBuffer(256);
@@ -315,9 +321,22 @@ public class HomeActivity extends Fragment {
 					@Override
 					public void run() {
 						getWeatherData(mCity);
+						DataRequest dataRequest = new DataRequest(getActivity().getApplicationContext());
+						JSONObject data = dataRequest.httpRequest("美食", location.getLatitude(), location.getLongitude());
+						final List<ShopInfo> shopInfoList = dataRequest.parseData(data);
+
+						Log.d(TAG,"shopInfoList size " + shopInfoList.size());
+						getActivity().runOnUiThread(new Runnable() {
+							@Override
+							public void run() {
+								shopAdapter.updateData(shopInfoList);
+								shopAdapter.notifyDataSetChanged();
+							}
+						});
+
 					}
 				}).start();
-				
+
 				if(mLocationState){
 					mLocationState = false;
 					locationService.stop();
@@ -325,8 +344,7 @@ public class HomeActivity extends Fragment {
 			}
 		}
 	};
-	
-	
+
 	private void initWeatherData(String weatherInfo) {
 		String heWeatherVersion = "HeWeather data service 3.0";
 		String aqi = "aqi";

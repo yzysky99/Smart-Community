@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.stev.smart_community.R;
+import com.stev.smart_community.widget.ShopInfo;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -58,6 +59,9 @@ public class ShopAdapter extends BaseAdapter {
 			holderView.shopName = (TextView) convertView.findViewById(R.id.tv_shop_name);
 			holderView.shopRatingBar = (RatingBar) convertView.findViewById(R.id.rb_shop_ratingbar);
 			holderView.shopPrice = (TextView) convertView.findViewById(R.id.tv_shop_price);
+			holderView.shopDistance =  (TextView) convertView.findViewById(R.id.tv_shop_distance);
+//			holderView.shopTel = (TextView) convertView.findViewById(R.id.tv_shop_tel);
+			holderView.shopAddr =  (TextView) convertView.findViewById(R.id.tv_shop_address);
 			convertView.setTag(holderView);
 		}else {
 			holderView=(HolderView) convertView.getTag();
@@ -66,10 +70,14 @@ public class ShopAdapter extends BaseAdapter {
 		Log.d(TAG, "position = " + position);
 		Bitmap logoBitmap = mShopInfoList.get(position).shopLogo;
 		holderView.shopLogo.setImageBitmap(logoBitmap);
-		holderView.shopName.setText(mShopInfoList.get(position).shopName);
-//		holderView.shopRatingBar.set
-		holderView.shopPrice.setText(mShopInfoList.get(position).shopPrice);
-		
+
+		holderView.shopName.setText(mShopInfoList.get(position).name);
+		holderView.shopRatingBar.setRating(Float.parseFloat(mShopInfoList.get(position).serviceRating));
+		holderView.shopPrice.setText(context.getString(R.string.shop_price, mShopInfoList.get(position).price));
+
+		holderView.shopDistance.setText(context.getString(R.string.shop_distance, mShopInfoList.get(position).distance));
+//		holderView.shopTel.setText(context.getString(R.string.shop_tel, mShopInfoList.get(position).telephone));
+		holderView.shopAddr.setText(context.getString(R.string.shop_addr, mShopInfoList.get(position).address));
 		return convertView;
 	}
 	
@@ -78,6 +86,9 @@ public class ShopAdapter extends BaseAdapter {
 		private TextView shopName;
 		private RatingBar shopRatingBar;
 		private TextView shopPrice;
+		private TextView shopDistance;
+		private TextView shopTel;
+		private TextView shopAddr;
 	}
 	
 }

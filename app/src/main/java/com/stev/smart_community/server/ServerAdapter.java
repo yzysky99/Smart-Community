@@ -12,7 +12,6 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.stev.smart_community.R;
-import com.stev.smart_community.home.ShopInfo;
 
 import java.util.ArrayList;
 import java.util.List;

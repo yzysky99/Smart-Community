@@ -24,7 +24,10 @@
     <string name="around_shop">周边商家</string>
 
     <string name="shop_name">肯德基(科技园店)</string>
-    <string name="shop_price">￥20/人</string>
+    <string name="shop_price">￥%s/人</string>
+    <string name="shop_distance">距离%dm</string>
+    <string name="shop_tel">tel:%s</string>
+    <string name="shop_addr">地址:%s</string>
 
     <string name="home_title">首页</string>
     <string name="server_title">服务</string>
@@ -167,4 +170,5 @@
     <string name="title_activity_about">AboutActivity</string>
     <string name="title_activity_suggest">SuggestActivity</string>
     <string name="title_activity_version_info">VersionInfoActivity</string>
+    <string name="title_activity_webview_ui">WebviewUI</string>
 </resources>

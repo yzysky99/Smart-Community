@@ -1,8 +1,5 @@
 package com.stev.smart_community;
 
-/**
- * Created by stevyang on 2016/10/9.
- */
 public class Constants {
 
     public static final String USER_INFO = "userInfo";
@@ -22,6 +19,8 @@ public class Constants {
         public static final String SHOP_INFO_NAME = "shop_info_name";
         public static final String SHOP_INFO_RATING_BAR = "shop_info_rating_bar";
         public static final String SHOP_INFO_PRICE = "shop_info_price";
+
+        public static final String SHOP_DETAIL_URL = "shop_detail_url";
     }
 
 

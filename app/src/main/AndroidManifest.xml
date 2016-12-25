@@ -136,6 +136,10 @@
             android:name=".me.VersionInfoActivity"
             android:label="@string/title_activity_version_info">
         </activity>
+        <activity
+            android:name=".home.WebviewUI"
+            android:label="@string/title_activity_webview_ui">
+        </activity>
     </application>
 
 </manifest>
