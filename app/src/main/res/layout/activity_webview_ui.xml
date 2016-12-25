@@ -5,7 +5,7 @@
     android:id="@+id/activity_webview_ui"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.stev.smart_community.home.WebviewUI">
+    tools:context="com.stev.smart_community.ui.WebviewUI">
 
     <WebView
         android:id="@+id/webView"

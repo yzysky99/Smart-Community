@@ -2,12 +2,10 @@ package com.stev.smart_community.widget;
 
 import android.graphics.Bitmap;
 
-public class ShopInfo {
-	public String shopId;
-	public Bitmap shopLogo;
-	public String shopName;
-	public float shopRatingBar;
-	public String shopPrice;
+public class DataInfo {
+//	public String id;
+	public Bitmap logo;
+//	public float ratingBar;
 
 	public String name;
 	public double lat;
@@ -30,5 +28,4 @@ public class ShopInfo {
 	public String imageNum;
 	public int grouponNum;
 	public String commentNum;
-
 }

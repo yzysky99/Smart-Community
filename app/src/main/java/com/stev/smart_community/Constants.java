@@ -4,6 +4,10 @@ public class Constants {
 
     public static final String USER_INFO = "userInfo";
 
+    public static final class CommonInfo {
+        public static final String DETAIL_URL = "detail_url";
+    }
+
     public static final class UserInfo {
         public static final String IS_LOGIN = "isLogin";
         public static final String USER_NAME = "user_name";
@@ -19,8 +23,6 @@ public class Constants {
         public static final String SHOP_INFO_NAME = "shop_info_name";
         public static final String SHOP_INFO_RATING_BAR = "shop_info_rating_bar";
         public static final String SHOP_INFO_PRICE = "shop_info_price";
-
-        public static final String SHOP_DETAIL_URL = "shop_detail_url";
     }
 
 
@@ -31,6 +33,7 @@ public class Constants {
         public static final String SERVER_INFO_NAME = "server_info_name";
         public static final String SERVER_INFO_RATING_BAR = "server_info_rating_bar";
         public static final String SERVER_INFO_PRICE = "server_info_price";
+        public static final String SERVER_INFO_TAG = "server_info_tag";
     }
 
     public static final class CommunityInfo {

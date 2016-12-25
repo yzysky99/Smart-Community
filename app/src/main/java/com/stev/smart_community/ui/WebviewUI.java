@@ -1,4 +1,4 @@
-package com.stev.smart_community.home;
+package com.stev.smart_community.ui;
 
 import android.content.Context;
 import android.content.Intent;
@@ -28,7 +28,7 @@ public class WebviewUI extends Activity {
         mContext = this;
         setContentView(R.layout.activity_webview_ui);
         Intent intent = getIntent();
-        String detailUrl = intent.getStringExtra(Constants.ShopInfo.SHOP_DETAIL_URL);
+        String detailUrl = intent.getStringExtra(Constants.CommonInfo.DETAIL_URL);
         webView = (WebView) findViewById(R.id.webView);
 
         Log.d(TAG,"detailUrl = " + detailUrl);
@@ -49,6 +49,7 @@ public class WebviewUI extends Activity {
 //                if (url.startsWith("http:") || url.startsWith("https:")) {
 //                    view.loadUrl(url);
 //                }
+                Log.d(TAG, "stevyang " + url);
                 if (url.startsWith("tel:")) {
                     startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
                     return true;

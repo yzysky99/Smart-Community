@@ -137,7 +137,7 @@
             android:label="@string/title_activity_version_info">
         </activity>
         <activity
-            android:name=".home.WebviewUI"
+            android:name=".ui.WebviewUI"
             android:label="@string/title_activity_webview_ui">
         </activity>
     </application>

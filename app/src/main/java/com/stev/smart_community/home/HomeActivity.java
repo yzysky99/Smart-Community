@@ -9,7 +9,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -34,9 +33,10 @@ import com.stev.smart_community.CommunityApplication;
 import com.stev.smart_community.Constants;
 import com.stev.smart_community.customview.CategoryAdapter;
 import com.stev.smart_community.net.DataRequest;
+import com.stev.smart_community.ui.WebviewUI;
 import com.stev.smart_community.weather.*;
 import com.stev.smart_community.R;
-import com.stev.smart_community.widget.ShopInfo;
+import com.stev.smart_community.widget.DataInfo;
 
 public class HomeActivity extends Fragment {
 	protected static final String TAG = "HomePage";
@@ -48,7 +48,8 @@ public class HomeActivity extends Fragment {
 	private TextView mTmpRange;
 	private TextView mHomeTitle;
 	private ImageView mWeatherIcon;
-	
+	private CommunityApplication mAppInstance;
+
 	private String mCity = "shenzhen";
 	private Boolean mLocationState = false;
 	private WeatherInfo mWeatherData;
@@ -58,7 +59,7 @@ public class HomeActivity extends Fragment {
 	
 	private ListView mShopInfoLV;
 	private ShopAdapter shopAdapter;
-	private List<ShopInfo> mShopInfoList = new ArrayList<ShopInfo>();
+	private List<DataInfo> mDataInfoList = new ArrayList<DataInfo>();
 	
 	private int[][] mCategoryPic = { 
 			{R.drawable.category_pic_1, R.string.category_1},
@@ -118,6 +119,7 @@ public class HomeActivity extends Fragment {
 		mGridViewCategory = (GridView)view.findViewById(R.id.gv_category); 
 		mCategoryAdapter = new CategoryAdapter(getActivity(), mCategoryPic);
 		mGridViewCategory.setAdapter(mCategoryAdapter);
+		mAppInstance = (CommunityApplication) getActivity().getApplication();
 		
 		mGridViewCategory.setOnItemClickListener(new OnItemClickListener() {
 			@Override
@@ -149,33 +151,32 @@ public class HomeActivity extends Fragment {
 		mShopInfoLV = (ListView)view.findViewById(R.id.lv_shop_info);
 		shopAdapter = new ShopAdapter(getActivity());
 //		for(int i = 0; i< 10; i++) {
-//			ShopInfo shopInfo = new ShopInfo();
+//			DataInfo shopInfo = new DataInfo();
 //			Random random = new Random();
 //			shopInfo.shopLogo = BitmapFactory.decodeResource(getResources(), R.drawable.shop_logo);
 //			shopInfo.shopName = getResources().getString(R.string.shop_name);
 //		    shopInfo.shopRatingBar = random.nextInt(4) + 1;
 //			shopInfo.shopPrice =  "￥" + (random.nextInt(100) + 100);
 //			shopInfo.shopId = i + "";
-//			mShopInfoList.add(i, shopInfo);
+//			mDataInfoList.add(i, shopInfo);
 //		}
 
-//		shopAdapter.updateData(mShopInfoList);
+//		shopAdapter.updateData(mDataInfoList);
 		mShopInfoLV.setAdapter(shopAdapter);
 		mShopInfoLV.setOnItemClickListener(new OnItemClickListener() {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 //				Intent intent = new Intent(getActivity(), ShopProfileActivity.class);
 				Intent intent = new Intent(getActivity(), WebviewUI.class);
-				ShopInfo shopInfoItem = (ShopInfo) shopAdapter.getItem(position);
+				DataInfo dataInfoItem = (DataInfo) shopAdapter.getItem(position);
 
-				intent.putExtra(Constants.ShopInfo.SHOP_DETAIL_URL, shopInfoItem.detailUrl);
+				intent.putExtra(Constants.CommonInfo.DETAIL_URL, dataInfoItem.detailUrl);
 
-				intent.putExtra(Constants.ShopInfo.SHOP_INFO_ID, shopInfoItem.shopId);
-				intent.putExtra(Constants.ShopInfo.SHOP_DETAIL_URL, shopInfoItem.detailUrl);
-				intent.putExtra(Constants.ShopInfo.SHOP_INFO_LOGO, shopInfoItem.shopLogo);
-				intent.putExtra(Constants.ShopInfo.SHOP_INFO_NAME, shopInfoItem.shopName);
-				intent.putExtra(Constants.ShopInfo.SHOP_INFO_RATING_BAR, shopInfoItem.shopRatingBar);
-				intent.putExtra(Constants.ShopInfo.SHOP_INFO_PRICE, shopInfoItem.shopPrice);
+//				intent.putExtra(Constants.ShopInfo.SHOP_INFO_ID, dataInfoItem.id);
+				intent.putExtra(Constants.ShopInfo.SHOP_INFO_LOGO, dataInfoItem.logo);
+				intent.putExtra(Constants.ShopInfo.SHOP_INFO_NAME, dataInfoItem.name);
+//				intent.putExtra(Constants.ShopInfo.SHOP_INFO_RATING_BAR, dataInfoItem.ratingBar);
+				intent.putExtra(Constants.ShopInfo.SHOP_INFO_PRICE, dataInfoItem.price);
 				startActivity(intent);
 			}
 		});
@@ -308,7 +309,9 @@ public class HomeActivity extends Fragment {
 					mLocationState = false;
 					sb.append("无法获取有效定位依据导致定位失败，一般是由于手机的原因，处于飞行模式下一般会造成这种结果，可以试着重启手机");
 				}
-				
+
+				mAppInstance.mLatitude = location.getLatitude();
+				mAppInstance.mLongitude = location.getLongitude();
 				mCity = location.getCity();
 //				Log.d(TAG, "mCity =" + mCity);
 				if(mCity != null && mCity.length() > 0){
@@ -323,13 +326,13 @@ public class HomeActivity extends Fragment {
 						getWeatherData(mCity);
 						DataRequest dataRequest = new DataRequest(getActivity().getApplicationContext());
 						JSONObject data = dataRequest.httpRequest("美食", location.getLatitude(), location.getLongitude());
-						final List<ShopInfo> shopInfoList = dataRequest.parseData(data);
+						final List<DataInfo> dataInfoList = dataRequest.parseData(data);
 
-						Log.d(TAG,"shopInfoList size " + shopInfoList.size());
+						Log.d(TAG,"dataInfoList size " + dataInfoList.size());
 						getActivity().runOnUiThread(new Runnable() {
 							@Override
 							public void run() {
-								shopAdapter.updateData(shopInfoList);
+								shopAdapter.updateData(dataInfoList);
 								shopAdapter.notifyDataSetChanged();
 							}
 						});

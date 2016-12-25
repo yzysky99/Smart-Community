@@ -20,6 +20,9 @@ public class CommunityApplication extends Application {
 	public LocationService locationService;
     public Vibrator mVibrator;
     public Context mContext;
+    public double mLatitude;
+    public double mLongitude;
+
     @Override
     public void onCreate() {
         super.onCreate();

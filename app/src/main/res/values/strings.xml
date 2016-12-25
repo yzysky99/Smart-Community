@@ -23,11 +23,11 @@
 
     <string name="around_shop">周边商家</string>
 
-    <string name="shop_name">肯德基(科技园店)</string>
-    <string name="shop_price">￥%s/人</string>
-    <string name="shop_distance">距离%dm</string>
-    <string name="shop_tel">tel:%s</string>
-    <string name="shop_addr">地址:%s</string>
+    <string name="name">肯德基(科技园店)</string>
+    <string name="price">￥%s/人</string>
+    <string name="distance">距离%dm</string>
+    <string name="tel">tel:%s</string>
+    <string name="addr">地址:%s</string>
 
     <string name="home_title">首页</string>
     <string name="server_title">服务</string>
@@ -63,10 +63,10 @@
     <string name="server_category_2">家电维修</string>
     <string name="server_category_3">超市</string>
     <string name="server_category_4">快递</string>
-    <string name="server_category_5">搬家</string>
+    <string name="server_category_5">医院</string>
     <string name="server_category_6">餐饮服务</string>
-    <string name="server_category_7">外卖</string>
-    <string name="server_category_8">房屋出租</string>
+    <string name="server_category_7">银行</string>
+    <string name="server_category_8">旅游景点</string>
 
     <!-- 我的社区 -->
     <string name="community_category_1">活动</string>

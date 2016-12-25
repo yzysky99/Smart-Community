@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.stev.smart_community.R;
-import com.stev.smart_community.widget.ShopInfo;
+import com.stev.smart_community.widget.DataInfo;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -20,7 +20,7 @@ import android.widget.TextView;
 public class ShopAdapter extends BaseAdapter {
 	private static final String TAG = "ShopAdapter";
 	private Context context;
-	private List<ShopInfo> mShopInfoList = new ArrayList<ShopInfo>();
+	private List<DataInfo> mDataInfoList = new ArrayList<DataInfo>();
 		
 	public ShopAdapter(Context context){
 		this.context=context;
@@ -28,20 +28,20 @@ public class ShopAdapter extends BaseAdapter {
 
 	@Override
 	public int getCount() {
-		return mShopInfoList.size();
+		return mDataInfoList.size();
 	}
 
-	public void updateData(List<ShopInfo> data) {
-		mShopInfoList.clear();
+	public void updateData(List<DataInfo> data) {
+		mDataInfoList.clear();
 		if (data != null && data.size() != 0) {
-			mShopInfoList.addAll(data);
+			mDataInfoList.addAll(data);
 		}
-		Log.d(TAG, "updateData mShopInfoList.size() = %d" + mShopInfoList.size());
+		Log.d(TAG, "updateData mDataInfoList.size() = %d" + mDataInfoList.size());
 	}
 	
 	@Override
 	public Object getItem(int position) {
-		return mShopInfoList.get(position);
+		return mDataInfoList.get(position);
 	}
 
 	@Override
@@ -68,16 +68,16 @@ public class ShopAdapter extends BaseAdapter {
 		}
 		
 		Log.d(TAG, "position = " + position);
-		Bitmap logoBitmap = mShopInfoList.get(position).shopLogo;
+		Bitmap logoBitmap = mDataInfoList.get(position).logo;
 		holderView.shopLogo.setImageBitmap(logoBitmap);
 
-		holderView.shopName.setText(mShopInfoList.get(position).name);
-		holderView.shopRatingBar.setRating(Float.parseFloat(mShopInfoList.get(position).serviceRating));
-		holderView.shopPrice.setText(context.getString(R.string.shop_price, mShopInfoList.get(position).price));
+		holderView.shopName.setText(mDataInfoList.get(position).name);
+		holderView.shopRatingBar.setRating(Float.parseFloat(mDataInfoList.get(position).serviceRating));
+		holderView.shopPrice.setText(context.getString(R.string.price, mDataInfoList.get(position).price));
 
-		holderView.shopDistance.setText(context.getString(R.string.shop_distance, mShopInfoList.get(position).distance));
-//		holderView.shopTel.setText(context.getString(R.string.shop_tel, mShopInfoList.get(position).telephone));
-		holderView.shopAddr.setText(context.getString(R.string.shop_addr, mShopInfoList.get(position).address));
+		holderView.shopDistance.setText(context.getString(R.string.distance, mDataInfoList.get(position).distance));
+//		holderView.shopTel.setText(context.getString(R.string.tel, mDataInfoList.get(position).telephone));
+		holderView.shopAddr.setText(context.getString(R.string.addr, mDataInfoList.get(position).address));
 		return convertView;
 	}
 	

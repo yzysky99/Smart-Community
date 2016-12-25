@@ -5,7 +5,7 @@ import android.graphics.BitmapFactory;
 import android.util.Log;
 
 import com.stev.smart_community.R;
-import com.stev.smart_community.widget.ShopInfo;
+import com.stev.smart_community.widget.DataInfo;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,6 +26,11 @@ public class DataRequest {
     Context mContext;
     public DataRequest(Context context) {
         mContext = context;
+    }
+
+    public List<DataInfo> getData(String tag, double latitude, double longitude) {
+        JSONObject data = httpRequest(tag, latitude, longitude);
+        return parseData(data);
     }
 
     public JSONObject httpRequest(String tag, double latitude, double longitude) {
@@ -93,8 +98,8 @@ public class DataRequest {
         return jsonObject;
     }
 
-    public List<ShopInfo> parseData(JSONObject jsonObject) {
-        List<ShopInfo> list = new ArrayList<>();
+    public List<DataInfo> parseData(JSONObject jsonObject) {
+        List<DataInfo> list = new ArrayList<>();
 
         try {
 
@@ -109,41 +114,41 @@ public class DataRequest {
             for (int i = 0; i< jsonArray.length(); i++) {
 //                jsonArray.ge
                 JSONObject jsonData = jsonArray.getJSONObject(i);
-                ShopInfo shopInfo = new ShopInfo();
-                shopInfo.name = jsonData.optString("name");
-                shopInfo.address = jsonData.optString("address");
-                shopInfo.streetId = jsonData.optString("street_id");
-                shopInfo.telephone = jsonData.optString("telephone");
-                shopInfo.detail = jsonData.optString("detail");
-                shopInfo.uid = jsonData.optString("uid");
+                DataInfo dataInfo = new DataInfo();
+                dataInfo.name = jsonData.optString("name");
+                dataInfo.address = jsonData.optString("address");
+                dataInfo.streetId = jsonData.optString("street_id");
+                dataInfo.telephone = jsonData.optString("telephone");
+                dataInfo.detail = jsonData.optString("detail");
+                dataInfo.uid = jsonData.optString("uid");
 
                 JSONObject jsonLocation = jsonData.getJSONObject("location");
-                shopInfo.lat = jsonLocation.optDouble("lat");
-                shopInfo.lng = jsonLocation.optDouble("lng");
+                dataInfo.lat = jsonLocation.optDouble("lat");
+                dataInfo.lng = jsonLocation.optDouble("lng");
 
                 JSONObject jsonDetailInfo = jsonData.getJSONObject("detail_info");
                 //detail_info
-                shopInfo.distance = jsonDetailInfo.optInt("distance");
-                shopInfo.tag = jsonDetailInfo.optString("tag");
-                shopInfo.type = jsonDetailInfo.optString("type");
-                shopInfo.detailUrl = jsonDetailInfo.optString("detail_url");
-                shopInfo.price = jsonDetailInfo.optString("price");
-                shopInfo.overallRating = jsonDetailInfo.optString("overall_rating");
-                shopInfo.serviceRating = jsonDetailInfo.optString("service_rating");
-                shopInfo.environmentRating = jsonDetailInfo.optString("environment_rating");
-                shopInfo.imageNum = jsonDetailInfo.optString("image_num");
-                shopInfo.grouponNum = jsonDetailInfo.optInt("groupon_num");
-                shopInfo.commentNum = jsonDetailInfo.optString("comment_num");
+                dataInfo.distance = jsonDetailInfo.optInt("distance");
+                dataInfo.tag = jsonDetailInfo.optString("tag");
+                dataInfo.type = jsonDetailInfo.optString("type");
+                dataInfo.detailUrl = jsonDetailInfo.optString("detail_url");
+                dataInfo.price = jsonDetailInfo.optString("price");
+                dataInfo.overallRating = jsonDetailInfo.optString("overall_rating");
+                dataInfo.serviceRating = jsonDetailInfo.optString("service_rating");
+                dataInfo.environmentRating = jsonDetailInfo.optString("environment_rating");
+                dataInfo.imageNum = jsonDetailInfo.optString("image_num");
+                dataInfo.grouponNum = jsonDetailInfo.optInt("groupon_num");
+                dataInfo.commentNum = jsonDetailInfo.optString("comment_num");
 
-                shopInfo.shopLogo = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.shop_logo);
-                list.add(shopInfo);
+                dataInfo.logo = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.shop_logo);
+                list.add(dataInfo);
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
-        /*
-        for (ShopInfo shopInfo1 : list) {
+        Log.d(TAG, "data = " + jsonObject.toString());
+        for (DataInfo shopInfo1 : list) {
             Log.d(TAG, "name = " + shopInfo1.name);
             Log.d(TAG, "address = " + shopInfo1.address);
             Log.d(TAG, "streetId = " + shopInfo1.streetId);
@@ -164,7 +169,7 @@ public class DataRequest {
             Log.d(TAG, "imageNum = " + shopInfo1.imageNum);
             Log.d(TAG, "grouponNum = " + shopInfo1.grouponNum);
             Log.d(TAG, "commentNum = " + shopInfo1.commentNum);
-        }*/
+        }
 
         return list;
     }

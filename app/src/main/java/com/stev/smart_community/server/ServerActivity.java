@@ -52,6 +52,7 @@ public class ServerActivity extends Fragment {
 				Intent intent = new Intent(getActivity(), ServerCategoryActivity.class);
 				String category =  getString(mCategoryPic[position][1]);
 				intent.putExtra(Constants.ServerInfo.SERVER_CATEGORY, category);
+				intent.putExtra(Constants.ServerInfo.SERVER_INFO_TAG, category);
 				startActivity(intent);
 			}
 		});
