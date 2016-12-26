@@ -58,6 +58,8 @@
 
     <string name="notice_context">消防局10月20日早上8点在小区广场进行消防知识宣传活动，请大家积极参加！</string>
 
+    <string name="no_data_tips">附近暂无相关数据</string>
+
     <!-- 服务页 -->
     <string name="server_category_1">家政服务</string>
     <string name="server_category_2">家电维修</string>

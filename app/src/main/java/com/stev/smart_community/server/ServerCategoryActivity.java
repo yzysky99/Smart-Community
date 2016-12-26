@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -24,11 +25,11 @@ public class ServerCategoryActivity extends Activity {
     private static final String TAG = "ServerCategoryActivity";
     private ImageView mBackBtn;
     private TextView mTitle;
+    private TextView mNoData;
+    private LinearLayout mContainer;
 
     private ListView mListView;
     private ServerAdapter mAdapter;
-    private List<DataInfo> mServerInfoList = new ArrayList<DataInfo>();
-
     private CommunityApplication mAppInstance;
 
     @Override
@@ -45,15 +46,14 @@ public class ServerCategoryActivity extends Activity {
             }
         });
 
+        mContainer = (LinearLayout) findViewById(R.id.com_container);
+        mNoData = (TextView) findViewById(R.id.tv_data_empty);
+
         mTitle = (TextView) findViewById(R.id.title);
         Intent intent = getIntent();
         String category = intent.getStringExtra(Constants.ServerInfo.SERVER_CATEGORY);
         mTitle.setText(category);
 
-        if (category.equals(R.string.server_category_8)) {
-            category = "租赁";
-        }
-        
         initData(category);
     }
 
@@ -84,8 +84,15 @@ public class ServerCategoryActivity extends Activity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        mAdapter.updateData(dataInfoList);
-                        mAdapter.notifyDataSetChanged();
+
+                        if (dataInfoList.size() <= 0) {
+                            mNoData.setVisibility(View.VISIBLE);
+                            mContainer.setVisibility(View.GONE);
+                        }else {
+                            mNoData.setVisibility(View.GONE);
+                            mAdapter.updateData(dataInfoList);
+                            mAdapter.notifyDataSetChanged();
+                        }
                     }
                 });
             }

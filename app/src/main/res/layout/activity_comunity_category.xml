@@ -7,16 +7,32 @@
 
     <include layout="@layout/action_bar_view" />
 
-    <LinearLayout
+    <TextView
+        android:id="@+id/tv_data_empty"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:visibility="gone"
+        android:textColor="@color/red"
+        android:text="@string/no_data_tips"
+        android:textSize="@dimen/text_size_24sp" />
 
-        <com.stev.smart_community.customview.DisplayListView
-            android:id="@+id/listView"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:id="@+id/com_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"/>
-    </LinearLayout>
+            android:orientation="vertical">
 
+            <com.stev.smart_community.customview.DisplayListView
+                android:id="@+id/listView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"/>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

@@ -146,30 +146,29 @@ public class DataRequest {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-        Log.d(TAG, "data = " + jsonObject.toString());
-        for (DataInfo shopInfo1 : list) {
-            Log.d(TAG, "name = " + shopInfo1.name);
-            Log.d(TAG, "address = " + shopInfo1.address);
-            Log.d(TAG, "streetId = " + shopInfo1.streetId);
-            Log.d(TAG, "telephone = " + shopInfo1.telephone);
-            Log.d(TAG, "detail = " + shopInfo1.detail);
-            Log.d(TAG, "uid = " + shopInfo1.uid);
-            Log.d(TAG, "lat = " + shopInfo1.lat);
-            Log.d(TAG, "lng = " + shopInfo1.lng);
-            Log.d(TAG, "distance = " + shopInfo1.distance);
-            Log.d(TAG, "tag = " + shopInfo1.tag);
-            Log.d(TAG, "type = " + shopInfo1.type);
-
-            Log.d(TAG, "detailUrl = " + shopInfo1.detailUrl);
-            Log.d(TAG, "price = " + shopInfo1.price);
-            Log.d(TAG, "overallRating = " + shopInfo1.overallRating);
-            Log.d(TAG, "serviceRating = " + shopInfo1.serviceRating);
-            Log.d(TAG, "environmentRating = " + shopInfo1.environmentRating);
-            Log.d(TAG, "imageNum = " + shopInfo1.imageNum);
-            Log.d(TAG, "grouponNum = " + shopInfo1.grouponNum);
-            Log.d(TAG, "commentNum = " + shopInfo1.commentNum);
-        }
+//
+//        for (DataInfo shopInfo1 : list) {
+//            Log.d(TAG, "name = " + shopInfo1.name);
+//            Log.d(TAG, "address = " + shopInfo1.address);
+//            Log.d(TAG, "streetId = " + shopInfo1.streetId);
+//            Log.d(TAG, "telephone = " + shopInfo1.telephone);
+//            Log.d(TAG, "detail = " + shopInfo1.detail);
+//            Log.d(TAG, "uid = " + shopInfo1.uid);
+//            Log.d(TAG, "lat = " + shopInfo1.lat);
+//            Log.d(TAG, "lng = " + shopInfo1.lng);
+//            Log.d(TAG, "distance = " + shopInfo1.distance);
+//            Log.d(TAG, "tag = " + shopInfo1.tag);
+//            Log.d(TAG, "type = " + shopInfo1.type);
+//
+//            Log.d(TAG, "detailUrl = " + shopInfo1.detailUrl);
+//            Log.d(TAG, "price = " + shopInfo1.price);
+//            Log.d(TAG, "overallRating = " + shopInfo1.overallRating);
+//            Log.d(TAG, "serviceRating = " + shopInfo1.serviceRating);
+//            Log.d(TAG, "environmentRating = " + shopInfo1.environmentRating);
+//            Log.d(TAG, "imageNum = " + shopInfo1.imageNum);
+//            Log.d(TAG, "grouponNum = " + shopInfo1.grouponNum);
+//            Log.d(TAG, "commentNum = " + shopInfo1.commentNum);
+//        }
 
         return list;
     }

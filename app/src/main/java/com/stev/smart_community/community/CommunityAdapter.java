@@ -12,6 +12,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.stev.smart_community.R;
+import com.stev.smart_community.widget.DataInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +20,7 @@ import java.util.List;
 public class CommunityAdapter extends BaseAdapter {
 	private static final String TAG = "CommunityAdapter";
 	private Context context;
-	private List<CommunityInfo> mCommunityInfoList = new ArrayList<CommunityInfo>();
+	private List<DataInfo> mCommunityInfoList = new ArrayList<DataInfo>();
 
 	public CommunityAdapter(Context context){
 		this.context=context;
@@ -30,7 +31,7 @@ public class CommunityAdapter extends BaseAdapter {
 		return mCommunityInfoList.size();
 	}
 
-	public void updateData(List<CommunityInfo> data) {
+	public void updateData(List<DataInfo> data) {
 		mCommunityInfoList.clear();
 		if (data != null && data.size() != 0) {
 			mCommunityInfoList.addAll(data);
@@ -58,6 +59,9 @@ public class CommunityAdapter extends BaseAdapter {
 			holderView.name = (TextView) convertView.findViewById(R.id.name);
 			holderView.ratingBar = (RatingBar) convertView.findViewById(R.id.ratingbar);
 //			holderView.price = (TextView) convertView.findViewById(R.id.price);
+			holderView.distance = (TextView) convertView.findViewById(R.id.tv_distance);
+			holderView.address = (TextView) convertView.findViewById(R.id.tv_address);
+
 			convertView.setTag(holderView);
 		}else {
 			holderView=(HolderView) convertView.getTag();
@@ -67,7 +71,14 @@ public class CommunityAdapter extends BaseAdapter {
 		Bitmap logoBitmap = mCommunityInfoList.get(position).logo;
 		holderView.logo.setImageBitmap(logoBitmap);
 		holderView.name.setText(mCommunityInfoList.get(position).name);
-		holderView.ratingBar.setRating((mCommunityInfoList.get(position).ratingBar));
+
+		if (mCommunityInfoList.get(position).serviceRating != null && mCommunityInfoList.get(position).serviceRating.length() > 0) {
+			holderView.ratingBar.setRating(Float.parseFloat(mCommunityInfoList.get(position).serviceRating));
+		}
+
+		holderView.distance.setText(context.getString(R.string.distance, mCommunityInfoList.get(position).distance));
+		holderView.address.setText(context.getString(R.string.addr, mCommunityInfoList.get(position).address));
+
 //		holderView.price.setText((mCommunityInfoList.get(position).price));
 		
 		return convertView;
@@ -78,6 +89,9 @@ public class CommunityAdapter extends BaseAdapter {
 		private TextView name;
 		private RatingBar ratingBar;
 		private TextView price;
+		private TextView distance;
+		private TextView telephone;
+		private TextView address;
 	}
 	
 }
